@@ -1345,9 +1345,9 @@ function GallerySection() {
             className="gallery-featured"
           >
             {/* Photo */}
-            <div style={{ position: 'relative', overflow: 'hidden', aspectRatio: '4/3', background: '#ECE8DE', padding: 'clamp(12px,1.6vw,20px)' }} className="gallery-photo">
+            <div style={{ position: 'relative', overflow: 'hidden', alignSelf: 'stretch', minHeight: 0, background: '#ECE8DE', padding: 'clamp(12px,1.6vw,20px)' }} className="gallery-photo">
               <img src={slide.img} alt={slide.alt}
-                style={{ width: '100%', height: '100%', objectFit: 'contain', objectPosition: 'center', display: 'block', background: '#FFFFFF', boxShadow: '0 5px 16px rgba(32,35,34,0.10)', transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)' }}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', background: '#FFFFFF', boxShadow: '0 5px 16px rgba(32,35,34,0.10)', transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)' }}
               />
               {/* index badge */}
               <div style={{
