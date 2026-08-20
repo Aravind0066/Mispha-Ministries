@@ -1,0 +1,104 @@
+generator client {
+  provider = "prisma-client-js"
+  output   = "../generated/sqlite-client"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("SQLITE_URL")
+}
+
+model SiteSettings {
+  id    Int    @id @default(autoincrement())
+  key   String @unique
+  value String
+}
+
+model GalleryImage {
+  id           Int      @id @default(autoincrement())
+  url          String
+  title        String
+  occasion     String
+  location     String
+  participants String
+  detail       String   @default("")
+  sortOrder    Int      @default(0)
+  createdAt    DateTime @default(now())
+}
+
+model BoardMember {
+  id        Int    @id @default(autoincrement())
+  name      String
+  role      String
+  bio       String @default("")
+  imageUrl  String
+  side      String @default("left")
+  sortOrder Int    @default(0)
+}
+
+model Sermon {
+  id        Int      @id @default(autoincrement())
+  title     String
+  speaker   String
+  date      DateTime
+  embedUrl  String
+  notesUrl  String   @default("")
+  category  String
+  createdAt DateTime @default(now())
+}
+
+model PrayerRequest {
+  id        Int      @id @default(autoincrement())
+  name      String   @default("")
+  contact   String   @default("")
+  category  String   @default("")
+  request   String
+  consent   Boolean  @default(false)
+  prayed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model CounsellingRequest {
+  id          Int      @id @default(autoincrement())
+  name        String
+  phone       String
+  email       String   @default("")
+  type        String   @default("")
+  language    String   @default("")
+  description String   @default("")
+  contacted   Boolean  @default(false)
+  createdAt   DateTime @default(now())
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String   @default("")
+  email     String   @default("")
+  reason    String   @default("")
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
+
+model DonationInterest {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String   @default("")
+  email     String   @default("")
+  area      String
+  tier      String
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
+
+model LeadershipEnquiry {
+  id        Int      @id @default(autoincrement())
+  name      String
+  phone     String
+  church    String   @default("")
+  track     String
+  notes     String   @default("")
+  status    String   @default("pending")
+  createdAt DateTime @default(now())
+}
