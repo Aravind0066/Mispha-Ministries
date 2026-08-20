@@ -146,20 +146,20 @@ function Loader({ onDone }: { onDone: () => void }) {
 // ─── NAVBAR ───────────────────────────────────────────────────────────────────
 
 const NAV = [
-  { label: 'Our Ministry', id: 'calling' },
-  { label: 'Training',     id: 'training' },
-  { label: 'Leadership',   id: 'leadership' },
-  { label: 'Vision',       id: 'vision' },
-  { label: 'Messages',     id: 'pulpit' },
-  { label: 'Give',         id: 'give' },
-  { label: 'Contact',      id: 'contact' },
+  { label: 'Our Ministry',     id: 'calling' },
+  { label: 'Training',         id: 'training' },
+  { label: 'Leadership',       id: 'leadership' },
+  { label: 'Annual Covenant',  id: 'covenant' },
+  { label: 'Gallery',          id: 'gallery' },
+  { label: 'Donations',        id: 'give' },
+  { label: 'Contact',          id: 'contact' },
 ]
 
 function Navbar({ loaded }: { loaded: boolean }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   useEffect(() => {
-    const h = () => setScrolled(window.scrollY > 80)
+    const h = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', h, { passive: true })
     return () => window.removeEventListener('scroll', h)
   }, [])
@@ -174,7 +174,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
       transition={{ duration: 0.65, ease: E, delay: 0.15 }}
       style={{
         position: 'fixed', top: 0, left: 0, right: 0, zIndex: 1000,
-        padding: scrolled ? '10px clamp(24px,5vw,80px)' : '20px clamp(24px,5vw,80px)',
+        padding: scrolled ? '12px clamp(20px, 4vw, 64px)' : '20px clamp(20px, 4vw, 64px)',
         background: scrolled ? 'rgba(244,240,232,0.97)' : 'rgba(244,240,232,0.90)',
         backdropFilter: 'blur(18px)',
         WebkitBackdropFilter: 'blur(18px)',
@@ -182,27 +182,27 @@ function Navbar({ loaded }: { loaded: boolean }) {
         transition: 'all 0.4s cubic-bezier(0.16,1,0.3,1)',
       }}
     >
-      <div style={{ maxWidth: 1380, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
-        {/* Logo */}
+      <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
+        {/* Logo left */}
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 11 }}>
-          <img src={img157} alt="Mispha logo" style={{ width: 46, height: 46, objectFit: 'contain', display: 'block' }} />
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12, shrink: 0 }}>
+          <img src={img157} alt="Mispha logo" style={{ width: 44, height: 44, objectFit: 'contain', display: 'block' }} />
           <div style={{
-            fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 17,
-            letterSpacing: '0.14em', textTransform: 'uppercase',
-            color: 'var(--ink)', lineHeight: 1,
+            fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 18,
+            letterSpacing: '0.12em', textTransform: 'uppercase',
+            color: 'var(--ink)', lineHeight: 1, whiteSpace: 'nowrap',
           }}>Mispha Ministries</div>
         </button>
 
-        {/* Desktop nav */}
-        <div className="hide-mobile" style={{ display: 'flex', gap: 4 }}>
+        {/* Desktop nav links center-expanded */}
+        <div className="hide-mobile" style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'nowrap' }}>
           {NAV.map(n => (
             <button key={n.id} onClick={() => go(n.id)}
               style={{
-                background: 'none', border: 'none', cursor: 'pointer', padding: '8px 14px',
-                fontFamily: "'Outfit', sans-serif", fontSize: 18, fontWeight: 700,
-                letterSpacing: '0.05em', textTransform: 'uppercase',
-                color: 'var(--charcoal)', transition: 'color 0.2s',
+                background: 'none', border: 'none', cursor: 'pointer', padding: '8px 12px',
+                fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 15, fontWeight: 600,
+                letterSpacing: '0.02em', color: 'var(--charcoal)', transition: 'color 0.2s',
+                whiteSpace: 'nowrap',
               }}
               onMouseEnter={e => (e.currentTarget.style.color = 'var(--brick)')}
               onMouseLeave={e => (e.currentTarget.style.color = 'var(--charcoal)')}
@@ -210,13 +210,13 @@ function Navbar({ loaded }: { loaded: boolean }) {
           ))}
         </div>
 
-        {/* CTA */}
-        <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
+        {/* CTA & Phone right */}
+        <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: 24, shrink: 0 }}>
           <a href="tel:+919884970978"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', letterSpacing: '0.06em', textDecoration: 'none' }}>
+            style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 15, fontWeight: 600, color: 'var(--ink)', letterSpacing: '0.04em', textDecoration: 'none', whiteSpace: 'nowrap' }}>
             +91 98849 70978
           </a>
-          <button onClick={() => go('contact')} className="btn btn-brass btn-arrow" style={{ padding: '10px 22px', fontSize: 14.5 }}>
+          <button onClick={() => go('contact')} className="btn btn-brass btn-arrow" style={{ padding: '11px 24px', fontSize: 14 }}>
             Request Prayer <span className="btn-arr">→</span>
           </button>
         </div>
@@ -225,49 +225,48 @@ function Navbar({ loaded }: { loaded: boolean }) {
         <button className="hide-tablet" onClick={() => setMenuOpen(true)} aria-label="Open menu"
           style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
           {[0, 1, 2].map(i => (
-            <span key={i} style={{ display: 'block', width: 22, height: 1.5, background: 'var(--ink)' }} />
+            <span key={i} style={{ display: 'block', width: 24, height: 2, background: 'var(--ink)', borderRadius: 1 }} />
           ))}
         </button>
       </div>
 
-      {/* Full-screen mobile menu */}
+      {/* Full-screen glassy mobile menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            transition={{ duration: 0.28 }}
+          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.28, ease: E }}
             style={{
               position: 'fixed', inset: 0, zIndex: 9999,
-              background: 'rgba(255,255,255,0.15)',
-              backdropFilter: 'blur(12px)',
-              WebkitBackdropFilter: 'blur(12px)',
-              borderRadius: 'var(--radius-lg)',
+              background: 'rgba(244, 240, 232, 0.95)',
+              backdropFilter: 'blur(24px)',
+              WebkitBackdropFilter: 'blur(24px)',
               display: 'flex', flexDirection: 'column', padding: '28px 32px 44px',
             }}
           >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 52 }}>
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <img src={img157} alt="Mispha logo" style={{ width: 30, height: 30, objectFit: 'contain' }} />
-                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 17, letterSpacing: '0.14em', color: 'var(--ink)', textTransform: 'uppercase' }}>Mispha Ministries</span>
+                <img src={img157} alt="Mispha logo" style={{ width: 36, height: 36, objectFit: 'contain' }} />
+                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 18, letterSpacing: '0.12em', color: 'var(--ink)', textTransform: 'uppercase' }}>Mispha Ministries</span>
               </div>
               <button onClick={() => setMenuOpen(false)} aria-label="Close menu"
-                style={{ background: 'none', border: 'none', color: 'var(--ink)', fontSize: 30, cursor: 'pointer', lineHeight: 1, padding: 4 }}>×</button>
+                style={{ background: 'none', border: 'none', color: 'var(--ink)', fontSize: 32, cursor: 'pointer', lineHeight: 1, padding: 4 }}>×</button>
             </div>
-            <div style={{ flex: 1 }}>
+            <div style={{ flex: 1, overflowY: 'auto' }}>
               {[...NAV, { label: 'Request Prayer', id: 'contact' }].map((n, i) => (
                 <button key={`${n.id}-${i}`} onClick={() => go(n.id)}
                   style={{
                     display: 'block', width: '100%', textAlign: 'left',
                     background: 'none', border: 'none', borderBottom: '1px solid var(--border)',
-                    cursor: 'pointer', padding: '20px 0',
-                    fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 24,
+                    cursor: 'pointer', padding: '18px 0',
+                    fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 22,
                     color: i === NAV.length ? 'var(--brick)' : 'var(--ink)',
                   }}
                 >{n.label}</button>
               ))}
             </div>
-            <div style={{ marginTop: 36 }}>
+            <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
               <a href="tel:+919884970978"
-                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 18, color: 'var(--muted)', textDecoration: 'none' }}>
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 600, color: 'var(--ink)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
                 +91 98849 70978
               </a>
             </div>
@@ -314,26 +313,26 @@ function Hero() {
         </motion.span>
 
         {/* Main headline */}
-        <div style={{ marginBottom: 24 }}>
+        <div style={{ marginBottom: 28, paddingTop: 4 }}>
           {['Building churches.', 'Equipping leaders.'].map((line, i) => (
-            <div key={i} style={{ overflow: 'hidden' }}>
+            <div key={i} style={{ overflow: 'hidden', paddingBottom: 6 }}>
               <motion.h1 initial={{ y: '110%' }} animate={{ y: 0 }}
                 transition={{ duration: 0.78, ease: E, delay: 0.65 + i * 0.1 }}
                 style={{
                   fontFamily: "'Fraunces', serif", fontWeight: 800,
-                  fontSize: 'clamp(42px,5vw,80px)',
-                  color: 'var(--ink)', lineHeight: 1.03, marginBottom: 4,
-                  letterSpacing: '-0.02em',
+                  fontSize: 'clamp(36px, 4.5vw, 74px)',
+                  color: 'var(--ink)', lineHeight: 1.15, marginBottom: 2,
+                  letterSpacing: '-0.015em',
                 }}>{line}</motion.h1>
             </div>
           ))}
-          <div style={{ overflow: 'hidden' }}>
+          <div style={{ overflow: 'hidden', paddingBottom: 4 }}>
             <motion.p initial={{ y: '110%' }} animate={{ y: 0 }}
               transition={{ duration: 0.78, ease: E, delay: 0.86 }}
               style={{
-                fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontStyle: 'italic',
-                fontSize: 'clamp(20px,2.2vw,30px)',
-                color: 'var(--brick)', lineHeight: 1.5, marginTop: 12,
+                fontFamily: "'Fraunces', serif", fontWeight: 400, fontStyle: 'italic',
+                fontSize: 'clamp(20px, 2.2vw, 30px)',
+                color: 'var(--brick)', lineHeight: 1.4, marginTop: 8,
               }}>Sending the Gospel forward.</motion.p>
           </div>
         </div>
@@ -2068,69 +2067,23 @@ export default function App() {
   return (
     <>
       <style>{`
-        /* Overall readability improvements */
+        /* Overall typography & form styles */
         body {
-          font-size: 17px;
-          line-height: 1.65;
-        }
-
-        p {
-          font-size: 17px !important;
-          line-height: 1.75 !important;
-        }
-
-        nav button {
-          font-size: 15px !important;
-        }
-
-        nav a {
-          font-size: 14px !important;
-        }
-
-        .btn {
-          font-size: 14px !important;
-          line-height: 1.2 !important;
-        }
-
-        .label {
-          font-size: 12px !important;
+          font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         input,
         textarea,
         select {
-          font-size: 16px !important;
+          font-size: 15px;
+          font-family: 'Plus Jakarta Sans', sans-serif;
         }
 
         footer button,
         footer a,
         footer span {
-          font-size: 14px !important;
-          line-height: 1.6 !important;
-        }
-
-        small {
-          font-size: 13px !important;
-        }
-
-        @media (max-width: 768px) {
-          body {
-            font-size: 16px;
-          }
-
-          p {
-            font-size: 16px !important;
-            line-height: 1.7 !important;
-          }
-
-          nav button,
-          nav a {
-            font-size: 16px !important;
-          }
-
-          .btn {
-            font-size: 14px !important;
-          }
+          font-size: 14px;
+          line-height: 1.6;
         }
       `}</style>
 

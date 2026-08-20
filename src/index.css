@@ -42,6 +42,7 @@ html {
   scrollbar-width: thin;
   scrollbar-color: rgba(181,101,74,0.3) transparent;
   overflow-x: hidden;
+  font-size: 16px;
 }
 html::-webkit-scrollbar { width: 3px; }
 html::-webkit-scrollbar-thumb { background: rgba(181,101,74,0.4); border-radius: 99px; }
@@ -49,6 +50,8 @@ html::-webkit-scrollbar-thumb { background: rgba(181,101,74,0.4); border-radius:
 body {
   margin: 0;
   font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.7;
   background: var(--ivory);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
@@ -70,9 +73,9 @@ button { font-family: inherit; }
 
 .label {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 10.5px;
-  font-weight: 600;
-  letter-spacing: 0.24em;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
   color: var(--brass);
   display: block;
@@ -93,21 +96,21 @@ button { font-family: inherit; }
   z-index: 0;
 }
 
-/* Buttons */
+/* ─── Buttons ────────────────────────────────────────────────────────────────── */
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 12px; font-weight: 700;
-  letter-spacing: 0.05em; text-transform: uppercase;
+  font-size: 13px; font-weight: 700;
+  letter-spacing: 0.04em; text-transform: uppercase;
   border: none; cursor: pointer;
-  border-radius: 99px; /* Pill shape! */
+  border-radius: 99px;
   transition: background 0.25s, color 0.25s, opacity 0.25s, transform 0.2s, box-shadow 0.2s;
   white-space: nowrap;
 }
 .btn:active { transform: scale(0.98); }
 
 .btn-primary {
-  padding: 13px 28px;
+  padding: 14px 30px;
   background: var(--desert-turquoise);
   color: #fff;
   box-shadow: 0 4px 12px rgba(122, 158, 142, 0.25);
@@ -115,7 +118,7 @@ button { font-family: inherit; }
 .btn-primary:hover { background: #5f8070; box-shadow: 0 6px 16px rgba(122, 158, 142, 0.4); }
 
 .btn-brass {
-  padding: 13px 28px;
+  padding: 14px 30px;
   background: var(--brick);
   color: #fff;
   box-shadow: 0 4px 12px rgba(181, 101, 74, 0.25);
@@ -123,7 +126,7 @@ button { font-family: inherit; }
 .btn-brass:hover { background: var(--burgundy); box-shadow: 0 6px 16px rgba(181, 101, 74, 0.4); }
 
 .btn-plum {
-  padding: 13px 28px;
+  padding: 14px 30px;
   background: var(--burgundy);
   color: #fff;
   box-shadow: 0 4px 12px rgba(143, 73, 56, 0.25);
@@ -131,7 +134,7 @@ button { font-family: inherit; }
 .btn-plum:hover { background: #6e3529; }
 
 .btn-outline {
-  padding: 12px 26px;
+  padding: 13px 28px;
   background: transparent;
   border: 1.5px solid currentColor;
 }
@@ -140,13 +143,13 @@ button { font-family: inherit; }
 .btn-outline-dark { color: var(--brick); border-color: var(--brick); }
 .btn-outline-dark:hover { background: var(--brick); color: #fff; }
 
-.btn-arrow .btn-arr { display: inline-block; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); font-size: 14px; }
+.btn-arrow .btn-arr { display: inline-block; transition: transform 0.35s cubic-bezier(0.16,1,0.3,1); font-size: 15px; }
 .btn-arrow:hover .btn-arr { transform: translateX(5px); }
 
 .btn-ghost {
   background: none; border: none; cursor: pointer;
   font-family: 'Plus Jakarta Sans', sans-serif;
-  font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
+  font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: underline; text-underline-offset: 4px;
   transition: opacity 0.25s;
@@ -154,7 +157,7 @@ button { font-family: inherit; }
 }
 .btn-ghost:hover { opacity: 0.65; }
 
-/* Moving band */
+/* ─── Moving band ────────────────────────────────────────────────────────────── */
 @keyframes ticker {
   from { transform: translateX(0); }
   to   { transform: translateX(-50%); }
@@ -192,8 +195,8 @@ button { font-family: inherit; }
   width: 100%; padding: 14px 16px;
   background: white; color: var(--ink);
   border: 1px solid rgba(200,195,184,0.6); outline: none;
-  font-size: 14.5px; transition: border-color 0.25s, box-shadow 0.25s;
-  border-radius: 12px; /* Added rounded corners */
+  font-size: 15px; transition: border-color 0.25s, box-shadow 0.25s;
+  border-radius: 10px;
 }
 .field:focus { border-color: var(--brick); box-shadow: 0 0 0 3px rgba(181, 101, 74, 0.1); }
 
@@ -210,65 +213,58 @@ button { font-family: inherit; }
 
 ::selection { background: rgba(181,101,74,0.18); color: var(--ink); }
 
-/* Responsive utilities */
-@media (max-width: 768px) {
-  .hide-mobile  { display: none !important; }
-}
-@media (max-width: 1024px) {
-  .hide-tablet  { display: flex !important; }
-}
-@media (min-width: 769px) {
+/* ─── Responsive utilities ───────────────────────────────────────────────────── */
+
+/* Desktop: show nav links & CTA, hide hamburger */
+@media (min-width: 1025px) {
+  .hide-tablet  { display: none !important; }
   .show-mobile  { display: none !important; }
 }
 
-/* ─── Readability improvements ───────────────────────────────────────────── */
-
-html {
-  font-size: 17px;
+/* Tablet & Mobile: hide nav links & CTA, show hamburger */
+@media (max-width: 1024px) {
+  .hide-mobile  { display: none !important; }
+  .hide-tablet  { display: flex !important; }
 }
 
-body {
-  font-size: 17px;
-  line-height: 1.65;
-}
+/* ─── Typography Scale (responsive) ──────────────────────────────────────────── */
 
-/* Normal paragraph text */
 p {
-  font-size: clamp(16px, 1vw, 18px) !important;
-  line-height: 1.7 !important;
+  font-size: clamp(15px, 1.05vw, 18px);
+  line-height: 1.75;
 }
 
-/* Header navigation */
-header nav a,
-header nav button {
-  font-size: 14px !important;
-  letter-spacing: 0.02em;
+/* ─── Responsive layout helpers ──────────────────────────────────────────────── */
+
+/* Hero section stacks on mobile */
+@media (max-width: 768px) {
+  #home {
+    grid-template-columns: 1fr !important;
+    min-height: auto !important;
+  }
+  #home > div:last-child {
+    min-height: 50vh !important;
+  }
 }
 
-/* Standard buttons and links styled as buttons */
-button,
-.btn,
-.button {
-  font-size: 14px !important;
+/* Covenant grid stacks on mobile */
+@media (max-width: 768px) {
+  .covenant-grid {
+    grid-template-columns: 1fr !important;
+  }
 }
 
-/* Small uppercase section labels */
-.label,
-.eyebrow,
-.kicker {
-  font-size: 12px !important;
-  letter-spacing: 0.16em;
+/* General section padding tightens on mobile */
+@media (max-width: 480px) {
+  section {
+    padding-left: 20px !important;
+    padding-right: 20px !important;
+  }
 }
 
-/* Forms and admin fields */
-input,
-textarea,
-select {
-  font-size: 16px !important;
-}
-
-/* Keep genuinely secondary text readable */
-small {
-  font-size: 13px !important;
-  line-height: 1.5;
+/* TV / ultra-wide: cap content width */
+@media (min-width: 2000px) {
+  body {
+    font-size: 18px;
+  }
 }
