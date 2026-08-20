@@ -77,7 +77,7 @@ function SectionHead({ label, title, subtitle, light = false, center = false }: 
         }}>{title}</h2>
         {subtitle && (
           <p style={{
-            fontFamily: "'DM Sans', sans-serif", fontSize: 16,
+            fontFamily: "'DM Sans', sans-serif", fontSize: 20,
             color: light ? 'rgba(244,240,232,0.55)' : 'var(--muted)',
             lineHeight: 1.85, marginTop: 22, maxWidth: 540,
             margin: center ? '22px auto 0' : '22px 0 0',
@@ -129,10 +129,10 @@ function Loader({ onDone }: { onDone: () => void }) {
           >
             <div style={{
               fontFamily: "'Fraunces', serif", fontWeight: 700,
-              fontSize: 18, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink)',
+              fontSize: 20, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--ink)',
             }}>Mispha Ministries</div>
             <div style={{
-              fontFamily: "'DM Sans', sans-serif", fontSize: 10,
+              fontFamily: "'DM Sans', sans-serif", fontSize: 14,
               letterSpacing: '0.28em', textTransform: 'uppercase',
               color: 'var(--brick)', marginTop: 10, opacity: 0.75,
             }}>Church · Mission · Training</div>
@@ -188,7 +188,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
           style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 11 }}>
           <img src={img157} alt="Mispha logo" style={{ width: 46, height: 46, objectFit: 'contain', display: 'block' }} />
           <div style={{
-            fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 13,
+            fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 17,
             letterSpacing: '0.14em', textTransform: 'uppercase',
             color: 'var(--ink)', lineHeight: 1,
           }}>Mispha Ministries</div>
@@ -200,7 +200,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             <button key={n.id} onClick={() => go(n.id)}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer', padding: '8px 14px',
-                fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 700,
+                fontFamily: "'DM Sans', sans-serif", fontSize: 17, fontWeight: 700,
                 letterSpacing: '0.05em', textTransform: 'uppercase',
                 color: 'var(--charcoal)', transition: 'color 0.2s',
               }}
@@ -213,10 +213,10 @@ function Navbar({ loaded }: { loaded: boolean }) {
         {/* CTA */}
         <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: 20 }}>
           <a href="tel:+919884970978"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)', letterSpacing: '0.06em', textDecoration: 'none' }}>
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', letterSpacing: '0.06em', textDecoration: 'none' }}>
             +91 98849 70978
           </a>
-          <button onClick={() => go('contact')} className="btn btn-brass btn-arrow" style={{ padding: '10px 22px', fontSize: 10.5 }}>
+          <button onClick={() => go('contact')} className="btn btn-brass btn-arrow" style={{ padding: '10px 22px', fontSize: 14.5 }}>
             Request Prayer <span className="btn-arr">→</span>
           </button>
         </div>
@@ -243,7 +243,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 52 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <img src={img157} alt="Mispha logo" style={{ width: 30, height: 30, objectFit: 'contain' }} />
-                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 13, letterSpacing: '0.14em', color: 'var(--ink)', textTransform: 'uppercase' }}>Mispha Ministries</span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 17, letterSpacing: '0.14em', color: 'var(--ink)', textTransform: 'uppercase' }}>Mispha Ministries</span>
               </div>
               <button onClick={() => setMenuOpen(false)} aria-label="Close menu"
                 style={{ background: 'none', border: 'none', color: 'var(--ink)', fontSize: 30, cursor: 'pointer', lineHeight: 1, padding: 4 }}>×</button>
@@ -263,7 +263,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             </div>
             <div style={{ marginTop: 36 }}>
               <a href="tel:+919884970978"
-                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', textDecoration: 'none' }}>
+                style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 18, color: 'var(--muted)', textDecoration: 'none' }}>
                 +91 98849 70978
               </a>
             </div>
@@ -344,7 +344,7 @@ function Hero() {
           transition={{ duration: 0.8, delay: 1.15, ease: E }}
           style={{
             fontFamily: "'DM Sans', sans-serif",
-            fontSize: 'clamp(14px,1.4vw,16px)', fontWeight: 400,
+            fontSize: 'clamp(16px,1.4vw,18px)', fontWeight: 400,
             color: 'var(--muted)', lineHeight: 1.9, maxWidth: 400, marginBottom: 38,
           }}>
           Mispha Ministries plants churches, prepares pastors, sends missionaries and develops Christian leaders who strengthen families and communities.
@@ -371,7 +371,7 @@ function Hero() {
               <div style={{ position: 'absolute', left: 0, top: 4, bottom: 4, width: 2, background: 'var(--brick)', borderRadius: 1 }} />
               <p style={{
                 fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic',
-                fontSize: 'clamp(14px,1.5vw,17px)', fontWeight: 500,
+                fontSize: 'clamp(16px,1.5vw,19px)', fontWeight: 500,
                 color: 'var(--burgundy)', lineHeight: 1.55,
               }}>{CATCH[catchIdx]}</p>
             </motion.div>
@@ -393,7 +393,7 @@ function Hero() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 2.0 }}
           style={{ marginTop: 40 }}>
           <a href="tel:+919884970978"
-            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)', letterSpacing: '0.08em', textDecoration: 'none' }}>
+            style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', letterSpacing: '0.08em', textDecoration: 'none' }}>
             +91 98849 70978
           </a>
         </motion.div>
@@ -420,10 +420,10 @@ function Hero() {
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 1.6, duration: 0.9 }}
           style={{ position: 'absolute', bottom: 44, left: 38, right: 38, zIndex: 2 }}>
           <div style={{ width: 22, height: 1, background: 'rgba(200,168,130,0.55)', marginBottom: 14 }} />
-          <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 'clamp(13px,1.3vw,15.5px)', color: 'rgba(244,232,210,0.86)', lineHeight: 1.7, margin: '0 0 10px' }}>
+          <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.3vw,17.5px)', color: 'rgba(244,232,210,0.86)', lineHeight: 1.7, margin: '0 0 10px' }}>
             "The effective, fervent prayer of a righteous man avails much."
           </p>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)' }}>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13.5, letterSpacing: '0.22em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)' }}>
             James 5:16
           </span>
         </motion.div>
@@ -454,7 +454,7 @@ function MovingBand() {
         {[0, 1].map(k => (
           <span key={k} style={{
             fontFamily: "'DM Sans', sans-serif", fontWeight: 500,
-            fontSize: 11, letterSpacing: '0.28em', textTransform: 'uppercase',
+            fontSize: 15, letterSpacing: '0.28em', textTransform: 'uppercase',
             color: 'rgba(143,73,56,0.65)', paddingRight: '6em',
           }}>{full}</span>
         ))}
@@ -550,14 +550,14 @@ function OurCalling() {
                 }}>
                 {/* Left accent bar for active */}
                 <span style={{
-                  fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 19, fontWeight: 500,
+                  fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 21, fontWeight: 500,
                   color: active === i ? 'var(--brick)' : 'var(--sage)',
                   transition: 'color 0.25s', lineHeight: 1.1,
                 }}>{cal.n}</span>
                 <div>
                   <div style={{
                     fontFamily: "'Fraunces', serif", fontWeight: 700,
-                    fontSize: 'clamp(14px,1.5vw,16px)',
+                    fontSize: 'clamp(16px,1.5vw,18px)',
                     color: active === i ? 'var(--ink)' : 'var(--muted)',
                     transition: 'color 0.25s', lineHeight: 1.3, marginBottom: active === i ? 8 : 0,
                   }}>{cal.title}</div>
@@ -566,7 +566,7 @@ function OurCalling() {
                       <motion.p
                         initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
                         exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.32, ease: E }}
-                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13.5, color: 'var(--muted)', lineHeight: 1.75, overflow: 'hidden', margin: 0 }}
+                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17.5, color: 'var(--muted)', lineHeight: 1.75, overflow: 'hidden', margin: 0 }}
                       >{cal.desc}</motion.p>
                     )}
                   </AnimatePresence>
@@ -597,10 +597,10 @@ function OurCalling() {
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,8,4,0.62) 0%, transparent 55%)' }} />
                 <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '22px 26px' }}>
                   <div style={{ width: 22, height: 1, background: 'rgba(200,168,130,0.55)', marginBottom: 12 }} />
-                  <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 13.5, color: 'rgba(244,240,232,0.82)', lineHeight: 1.7, margin: '0 0 8px' }}>
+                  <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 17.5, color: 'rgba(244,240,232,0.82)', lineHeight: 1.7, margin: '0 0 8px' }}>
                     "I will build my church, and the gates of hell shall not prevail against it."
                   </p>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)' }}>Matthew 16:18</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)' }}>Matthew 16:18</span>
                 </div>
               </div>
             </div>
@@ -621,12 +621,12 @@ const PRIORITIES = [
     detail: 'Building self-sustaining funding models so local churches can grow without dependency on outside organisations.',
     extra: (
       <div>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'var(--muted)', marginBottom: 14, lineHeight: 1.75 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'var(--muted)', marginBottom: 14, lineHeight: 1.75 }}>
           A funding-ready church can give, receive and steward well. Key markers include a regular giving culture, transparent accountability and at least two independent income streams.
         </p>
         <ul style={{ listStyle: 'none', padding: 0, margin: '0 0 18px' }}>
           {['Regular giving culture established', 'Two or more income streams', 'Transparent reporting in place', 'External partnership agreements'].map(item => (
-            <li key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 8, fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'var(--ink)' }}>
+            <li key={item} style={{ display: 'flex', gap: 10, alignItems: 'flex-start', marginBottom: 8, fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'var(--ink)' }}>
               <span style={{ width: 16, height: 16, border: '1px solid var(--brick)', borderRadius: 2, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
                 <span style={{ width: 6, height: 6, background: 'var(--brick)', borderRadius: 1, display: 'block' }} />
               </span>
@@ -646,12 +646,12 @@ const PRIORITIES = [
         <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 6, marginBottom: 14 }}>
           {['Welcome', 'Foundations', 'Mentoring', 'Serving'].map((stage, i) => (
             <div key={stage} style={{ textAlign: 'center', padding: '12px 6px', background: 'var(--teal-bg)', border: '1px solid var(--border)' }}>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{String(i + 1).padStart(2, '0')}</div>
-              <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 12, color: 'var(--ink)' }}>{stage}</div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', letterSpacing: '0.1em', textTransform: 'uppercase', marginBottom: 4 }}>{String(i + 1).padStart(2, '0')}</div>
+              <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 16, color: 'var(--ink)' }}>{stage}</div>
             </div>
           ))}
         </div>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'var(--muted)', lineHeight: 1.75 }}>Each stage has defined learning objectives, community milestones and a mentor relationship.</p>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'var(--muted)', lineHeight: 1.75 }}>Each stage has defined learning objectives, community milestones and a mentor relationship.</p>
       </div>
     ),
     action: 'Discuss a discipleship pathway', actionId: 'contact',
@@ -663,8 +663,8 @@ const PRIORITIES = [
       <div style={{ marginBottom: 16 }}>
         {[['90-Day Focus', 'Immediate priorities, key roles and first-quarter milestones.'], ['1-Year Strategy', 'Annual objectives, budget framework and community growth targets.'], ['5-Year Vision', 'Long-term mission trajectory, infrastructure and leadership pipeline.']].map(([label, desc]) => (
           <div key={label} style={{ padding: '10px 14px', borderLeft: '2px solid var(--brick)', marginBottom: 8, background: 'var(--teal-bg)' }}>
-            <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 12, color: 'var(--brick)', marginBottom: 3 }}>{label}</div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)', lineHeight: 1.6 }}>{desc}</div>
+            <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 16, color: 'var(--brick)', marginBottom: 3 }}>{label}</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', lineHeight: 1.6 }}>{desc}</div>
           </div>
         ))}
       </div>
@@ -679,8 +679,8 @@ const PRIORITIES = [
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 6, marginBottom: 14 }}>
           {[['Church', 'Join a network of planting churches'], ['Organisation', 'Collaborate on training or mission'], ['Donor', 'Direct giving with ministry accountability'], ['Volunteer', 'Skills, time and presence on the ground']].map(([type, desc]) => (
             <div key={type} style={{ padding: '12px 14px', border: '1px solid var(--border)', background: 'var(--ivory)' }}>
-              <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 12, color: 'var(--ink)', marginBottom: 3 }}>{type}</div>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: 'var(--muted)', lineHeight: 1.5 }}>{desc}</div>
+              <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 16, color: 'var(--ink)', marginBottom: 3 }}>{type}</div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', lineHeight: 1.5 }}>{desc}</div>
             </div>
           ))}
         </div>
@@ -697,8 +697,8 @@ const PRIORITIES = [
           <div key={prog} style={{ display: 'flex', gap: 12, alignItems: 'flex-start', marginBottom: 8 }}>
             <span style={{ width: 6, height: 6, background: 'var(--brick)', borderRadius: '50%', marginTop: 6, flexShrink: 0 }} />
             <div>
-              <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 12, color: 'var(--ink)' }}>{prog} </span>
-              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)' }}>— {desc}</span>
+              <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 14, color: 'var(--ink)' }}>{prog} </span>
+              <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)' }}>— {desc}</span>
             </div>
           </div>
         ))}
@@ -711,7 +711,7 @@ const PRIORITIES = [
     detail: 'A dedicated care framework helping individuals and families receive compassionate, confidential pastoral support.',
     extra: (
       <div style={{ padding: '14px 16px', background: 'var(--teal-bg)', border: '1px solid var(--border)', marginBottom: 16 }}>
-        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)', lineHeight: 1.75, fontStyle: 'italic', margin: 0 }}>
+        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', lineHeight: 1.75, fontStyle: 'italic', margin: 0 }}>
           All care enquiries are handled with complete confidentiality. No personal information is shared publicly. This service is pastoral in nature — for immediate crisis support, please contact your local emergency services.
         </p>
       </div>
@@ -735,7 +735,7 @@ function StrengtheningChurch() {
                 fontSize: 'clamp(32px,4vw,52px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 24,
                 letterSpacing: '-0.02em',
               }}>Strengthening<br />the Local<br /><em style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--burgundy)' }}>Church</em></h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', lineHeight: 1.85 }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 18, color: 'var(--muted)', lineHeight: 1.85 }}>
                 Six areas of ministry focus that help local churches grow in health, depth and long-term fruitfulness.
               </p>
             </div>
@@ -751,7 +751,7 @@ function StrengtheningChurch() {
                     }}>
                     <span style={{
                       fontFamily: "'Fraunces', serif", fontWeight: 700,
-                      fontSize: 'clamp(14px,1.6vw,17px)',
+                      fontSize: 'clamp(16px,1.6vw,19px)',
                       color: open === i ? 'var(--brick)' : 'var(--ink)', transition: 'color 0.25s',
                     }}>{p.title}</span>
                     <motion.span animate={{ rotate: open === i ? 45 : 0 }} transition={{ duration: 0.25 }}
@@ -764,9 +764,9 @@ function StrengtheningChurch() {
                   </button>
                   <div className={`acc-body${open === i ? ' open' : ''}`}>
                     <div style={{ padding: '4px 0 24px' }}>
-                      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', lineHeight: 1.8, marginBottom: 14 }}>{p.detail}</p>
+                      <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'var(--muted)', lineHeight: 1.8, marginBottom: 14 }}>{p.detail}</p>
                       {p.extra}
-                      <button className="btn btn-primary" style={{ fontSize: 11, padding: '11px 24px' }}
+                      <button className="btn btn-primary" style={{ fontSize: 13, padding: '11px 24px' }}
                         onClick={() => document.getElementById(p.actionId)?.scrollIntoView({ behavior: 'smooth' })}>
                         {p.action}
                       </button>
@@ -847,7 +847,7 @@ function LeadershipNetwork() {
               Leading Every<br /><em style={{ fontStyle: 'italic', fontWeight: 400, color: 'var(--burgundy)' }}>Generation</em>
             </h2>
           </div>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(14px,1.3vw,16px)', color: 'var(--muted)', lineHeight: 1.8, margin: 0 }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(16px,1.3vw,18px)', color: 'var(--muted)', lineHeight: 1.8, margin: 0 }}>
             Four structured programmes developing leaders across every expression of ministry — grounded in Scripture, shaped by calling, and built for the long-term.
           </p>
         </div>
@@ -892,7 +892,7 @@ function LeadershipNetwork() {
                       lineHeight: 1.2, marginBottom: 5,
                     }}>{t.label}</div>
                     <div style={{
-                      fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(12.5px,1.1vw,14px)',
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(14.5px,1.1vw,16px)',
                       color: 'var(--muted)', lineHeight: 1.6,
                     }}>{t.tagline}</div>
                   </div>
@@ -911,8 +911,8 @@ function LeadershipNetwork() {
                       exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.38, ease: E }}
                       style={{ overflow: 'hidden', background: '#fff', borderLeft: '3px solid var(--brick)', borderBottom: '1px solid var(--border)', borderRight: '1px solid var(--border)', borderRadius: '0 0 12px 12px' }}>
                       <div style={{ padding: 'clamp(16px,2vw,24px) clamp(20px,2.5vw,32px) clamp(20px,2vw,28px)', paddingLeft: 'calc(72px + clamp(16px,2vw,32px) + clamp(20px,2.5vw,32px))' }}>
-                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14.5, color: 'var(--muted)', lineHeight: 1.85, margin: '0 0 18px', maxWidth: 620 }}>{t.detail}</p>
-                        <button className="btn btn-outline btn-outline-dark btn-arrow" style={{ fontSize: 10.5 }}
+                        <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16.5, color: 'var(--muted)', lineHeight: 1.85, margin: '0 0 18px', maxWidth: 620 }}>{t.detail}</p>
+                        <button className="btn btn-outline btn-outline-dark btn-arrow" style={{ fontSize: 12.5 }}
                           onClick={() => document.getElementById('enquiry-form')?.scrollIntoView({ behavior: 'smooth' })}>
                           Apply for this programme <span className="btn-arr">→</span>
                         </button>
@@ -933,15 +933,15 @@ function LeadershipNetwork() {
               <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(20px,2.2vw,28px)', color: 'var(--ink)', marginBottom: 12, lineHeight: 1.2 }}>
                 Begin your leadership journey
               </h3>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', marginBottom: 0, lineHeight: 1.75 }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', marginBottom: 0, lineHeight: 1.75 }}>
                 {track ? track.tagline : 'Select a programme track above, then complete this form. The Mispha team will be in touch to discuss the next steps.'}
               </p>
             </div>
             <div>
               {enquirySent ? (
                 <div style={{ padding: '24px', background: 'var(--teal-bg)', border: '1px solid rgba(154,160,143,0.3)' }}>
-                  <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 16, color: 'var(--teal-dark)', marginBottom: 6 }}>Enquiry received</div>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'var(--muted)', margin: 0 }}>The ministry will be in touch shortly.</p>
+                  <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 18, color: 'var(--teal-dark)', marginBottom: 6 }}>Enquiry received</div>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', margin: 0 }}>The ministry will be in touch shortly.</p>
                 </div>
               ) : (
                 <form onSubmit={async e => { 
@@ -965,7 +965,7 @@ function LeadershipNetwork() {
                         width: '100%', appearance: 'none', WebkitAppearance: 'none',
                         padding: '13px 40px 13px 14px', background: 'white',
                         border: '1px solid var(--border)', color: activeTrack ? 'var(--ink)' : 'var(--muted)',
-                        fontFamily: "'DM Sans', sans-serif", fontSize: 14, cursor: 'pointer',
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 16, cursor: 'pointer',
                         outline: 'none', borderRadius: 12,
                       }}>
                       <option value="" disabled>Select a programme track</option>
@@ -1018,10 +1018,10 @@ function AnnualCovenant() {
                   <div style={{ width: 18, height: 18, border: '1px solid rgba(181,101,74,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
                     <div style={{ width: 7, height: 7, background: 'var(--brick)' }} />
                   </div>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'rgba(244,240,232,0.75)', lineHeight: 1.65 }}>{item}</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'rgba(244,240,232,0.75)', lineHeight: 1.65 }}>{item}</span>
                 </div>
               ))}
-              <div style={{ marginTop: 32, padding: '14px 0', borderTop: '1px solid rgba(181,101,74,0.12)', fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'rgba(244,240,232,0.3)', fontStyle: 'italic' }}>
+              <div style={{ marginTop: 32, padding: '14px 0', borderTop: '1px solid rgba(181,101,74,0.12)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'rgba(244,240,232,0.3)', fontStyle: 'italic' }}>
                 Progress updates will be published here when ministry details are confirmed.
               </div>
             </div>
@@ -1036,7 +1036,7 @@ function AnnualCovenant() {
                   <div style={{ width: 18, height: 18, border: '1px solid var(--sage)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
                     <div style={{ width: 7, height: 7, background: 'var(--sage)' }} />
                   </div>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', lineHeight: 1.65 }}>{item}</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'var(--muted)', lineHeight: 1.65 }}>{item}</span>
                 </div>
               ))}
               <div style={{ marginTop: 32 }}>
@@ -1093,18 +1093,18 @@ function VisionCard({ project: p, expanded, setExpanded }: { project: VProject; 
       <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: 'clamp(18px,2.5vw,28px)' }}>
         <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: 12 }}>
           <div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9, color: isOpen ? 'rgba(200,168,130,0.9)' : 'rgba(200,168,130,0.55)', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 7, transition: 'color 0.25s' }}>In Vision</div>
-            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(15px,1.8vw,21px)', color: '#F4F0E8', lineHeight: 1.12, margin: 0 }}>{p.title}</h3>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: isOpen ? 'rgba(200,168,130,0.9)' : 'rgba(200,168,130,0.55)', letterSpacing: '0.22em', textTransform: 'uppercase', marginBottom: 7, transition: 'color 0.25s' }}>In Vision</div>
+            <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(17px,1.8vw,23px)', color: '#F4F0E8', lineHeight: 1.12, margin: 0 }}>{p.title}</h3>
           </div>
           <motion.div animate={{ rotate: isOpen ? 45 : 0 }} transition={{ duration: 0.25 }}
-            style={{ width: 30, height: 30, border: `1px solid ${isOpen ? 'rgba(181,101,74,0.7)' : 'rgba(255,255,255,0.3)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: isOpen ? '#B5654A' : 'rgba(255,255,255,0.6)', fontSize: 18, fontWeight: 200, transition: 'border-color 0.25s, color 0.25s' }}>+</motion.div>
+            style={{ width: 30, height: 30, border: `1px solid ${isOpen ? 'rgba(181,101,74,0.7)' : 'rgba(255,255,255,0.3)'}`, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, color: isOpen ? '#B5654A' : 'rgba(255,255,255,0.6)', fontSize: 20, fontWeight: 200, transition: 'border-color 0.25s, color 0.25s' }}>+</motion.div>
         </div>
         <AnimatePresence>
           {isOpen && (
             <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.35 }}>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'rgba(244,240,232,0.75)', lineHeight: 1.8, marginTop: 12, marginBottom: 14 }}>{p.purpose}</p>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: 'rgba(244,240,232,0.35)', fontStyle: 'italic', marginBottom: 16 }}>Full details and funding goals will be published when confirmed.</div>
-              <button className="btn btn-brass" style={{ fontSize: 10, padding: '9px 20px' }}
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'rgba(244,240,232,0.75)', lineHeight: 1.8, marginTop: 12, marginBottom: 14 }}>{p.purpose}</p>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'rgba(244,240,232,0.35)', fontStyle: 'italic', marginBottom: 16 }}>Full details and funding goals will be published when confirmed.</div>
+              <button className="btn btn-brass" style={{ fontSize: 12, padding: '9px 20px' }}
                 onClick={e => { e.stopPropagation(); document.getElementById('give')?.scrollIntoView({ behavior: 'smooth' }) }}>Support This Vision</button>
             </motion.div>
           )}
@@ -1165,7 +1165,7 @@ function FromThePulpit() {
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,8,28,0.55) 0%, transparent 55%)' }} />
               </div>
               <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 20px', background: 'rgba(20,8,28,0.65)', backdropFilter: 'blur(4px)', borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)' }}>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)' }}>
                   Rev. D. John Benni · President
                 </span>
               </div>
@@ -1180,12 +1180,12 @@ function FromThePulpit() {
               </h2>
               {/* Devotional scripture block */}
               <div style={{ borderLeft: '2px solid var(--brick)', paddingLeft: 18, marginBottom: 28 }}>
-                <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 15, color: 'var(--ink)', lineHeight: 1.75, margin: '0 0 6px' }}>
+                <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 17, color: 'var(--ink)', lineHeight: 1.75, margin: '0 0 6px' }}>
                   "Go into all the world and preach the gospel to every creature."
                 </p>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10.5, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--muted)' }}>Mark 16:15</span>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12.5, letterSpacing: '0.16em', textTransform: 'uppercase', color: 'var(--muted)' }}>Mark 16:15</span>
               </div>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15.5, color: 'var(--muted)', lineHeight: 1.85, marginBottom: 36 }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17.5, color: 'var(--muted)', lineHeight: 1.85, marginBottom: 36 }}>
                 Teachings, sermons and training messages from Rev. D. John Benni will be published here as the media archive develops. Video, audio and message notes will be available for every resource.
               </p>
             </Reveal>
@@ -1198,7 +1198,7 @@ function FromThePulpit() {
                       border: `1px solid ${filter === f ? 'var(--brick)' : 'rgba(32,35,34,0.18)'}`,
                       borderRadius: 99,
                       padding: '7px 16px', cursor: 'pointer',
-                      fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
                       color: filter === f ? '#fff' : 'rgba(32,35,34,0.45)',
                       transition: 'all 0.25s',
                     }}>{f}</button>
@@ -1210,16 +1210,16 @@ function FromThePulpit() {
                 <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
                   {sermons.map(s => (
                     <div key={s.id} style={{ padding: '24px', background: 'white', border: '1px solid var(--border)', borderRadius: 12 }}>
-                      <div style={{ fontSize: 11, color: 'var(--brick)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>{new Date(s.date).toLocaleDateString()} • {s.category}</div>
-                      <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: 18, margin: '0 0 8px 0', color: 'var(--ink)' }}>{s.title}</h4>
-                      <div style={{ fontSize: 14, color: 'var(--muted)', marginBottom: s.embedUrl ? 16 : 0 }}>{s.speaker}</div>
-                      {s.embedUrl && <a href={s.embedUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, color: 'var(--brick)', fontWeight: 600, textDecoration: 'none' }}>Watch Video →</a>}
+                      <div style={{ fontSize: 13, color: 'var(--brick)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>{new Date(s.date).toLocaleDateString()} • {s.category}</div>
+                      <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: 20, margin: '0 0 8px 0', color: 'var(--ink)' }}>{s.title}</h4>
+                      <div style={{ fontSize: 16, color: 'var(--muted)', marginBottom: s.embedUrl ? 16 : 0 }}>{s.speaker}</div>
+                      {s.embedUrl && <a href={s.embedUrl} target="_blank" rel="noreferrer" style={{ fontSize: 15, color: 'var(--brick)', fontWeight: 600, textDecoration: 'none' }}>Watch Video →</a>}
                     </div>
                   ))}
                 </div>
               ) : (
                 <div style={{ padding: '28px', background: 'white', border: '1px solid var(--border)', borderRadius: 12 }}>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 16, color: 'var(--muted)', lineHeight: 1.75 }}>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 18, color: 'var(--muted)', lineHeight: 1.75 }}>
                     Sermon titles, video archives and message notes will be published here. Check back as the media library develops.
                   </p>
                 </div>
@@ -1272,8 +1272,8 @@ function BoardMembers() {
                     <div style={{ width: 2, height: 48, background: 'var(--burgundy)', marginBottom: 24 }} />
                     <span className="label" style={{ marginBottom: 12, display: 'block' }}>{member.role}</span>
                     <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(24px,3vw,40px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 8, letterSpacing: '-0.02em' }}>{member.name}</h3>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 18, color: 'var(--burgundy)', marginBottom: 28 }}>{member.role}, Mispha Ministries</p>
-                    <div style={{ padding: '18px 22px', background: 'white', borderLeft: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75, marginBottom: 32 }}>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 20, color: 'var(--burgundy)', marginBottom: 28 }}>{member.role}, Mispha Ministries</p>
+                    <div style={{ padding: '18px 22px', background: 'white', borderLeft: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75, marginBottom: 32 }}>
                       {member.bio || "Biography will be added here."}
                     </div>
                   </div>
@@ -1289,8 +1289,8 @@ function BoardMembers() {
                   <div style={{ width: 2, height: 48, background: 'var(--sage)', marginBottom: 24, marginLeft: 'auto' }} />
                   <span className="label" style={{ marginBottom: 12, display: 'block', textAlign: 'right' }}>{member.role}</span>
                   <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(24px,3vw,40px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 8, textAlign: 'right', letterSpacing: '-0.02em' }}>{member.name}</h3>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 18, color: 'var(--sage)', marginBottom: 28, textAlign: 'right' }}>{member.role}, Mispha Ministries</p>
-                  <div style={{ padding: '18px 22px', background: 'white', borderRight: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75 }}>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 20, color: 'var(--sage)', marginBottom: 28, textAlign: 'right' }}>{member.role}, Mispha Ministries</p>
+                  <div style={{ padding: '18px 22px', background: 'white', borderRight: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75 }}>
                     {member.bio || "Biography will be added here."}
                   </div>
                 </div>
@@ -1446,7 +1446,7 @@ function GallerySection() {
                 }}>{slide.title}</h3>
                 <div style={{ width: 28, height: 1, background: 'var(--border)', marginBottom: 24 }} />
                 <p style={{
-                  fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(14px,1.4vw,16px)',
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 'clamp(16px,1.4vw,18px)',
                   color: 'var(--muted)', lineHeight: 1.85, marginBottom: 32,
                 }}>{slide.detail}</p>
 
@@ -1458,11 +1458,11 @@ function GallerySection() {
                   ].map(row => (
                     <div key={row.label} style={{ display: 'flex', gap: 14, alignItems: 'flex-start', paddingBottom: 14, borderBottom: '1px solid #F0EDE7' }}>
                       <span style={{
-                        fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 600,
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600,
                         letterSpacing: '0.18em', textTransform: 'uppercase', color: 'var(--muted)',
                         minWidth: 90, paddingTop: 2,
                       }}>{row.label}</span>
-                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--ink)', lineHeight: 1.5 }}>{row.value}</span>
+                      <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--ink)', lineHeight: 1.5 }}>{row.value}</span>
                     </div>
                   ))}
                 </div>
@@ -1497,7 +1497,7 @@ function GallerySection() {
                   →
                 </button>
                 <div style={{
-                  fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)',
+                  fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)',
                   display: 'flex', alignItems: 'center', marginLeft: 8,
                   letterSpacing: '0.06em',
                 }}>
@@ -1556,7 +1556,7 @@ function GivePartner() {
       <div style={{ background: sageDark, padding: 'clamp(56px,7vw,100px) clamp(24px,6vw,96px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'grid', gridTemplateColumns: '1fr auto', alignItems: 'center', gap: 40 }} className="give-banner-grid">
           <div>
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(200,220,200,0.6)', display: 'block', marginBottom: 18 }}>Give &amp; Partner</span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(200,220,200,0.6)', display: 'block', marginBottom: 18 }}>Give &amp; Partner</span>
             <h2 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(28px,4.5vw,58px)', color: '#F4F0E8', lineHeight: 1.06, letterSpacing: '-0.02em', margin: 0 }}>
               Your generosity<br />
               <em style={{ fontStyle: 'italic', fontWeight: 300, color: 'rgba(200,220,200,0.75)' }}>builds what endures.</em>
@@ -1571,7 +1571,7 @@ function GivePartner() {
               ].map(stat => (
                 <div key={stat.n} style={{ display: 'flex', alignItems: 'baseline', gap: 10, justifyContent: 'flex-end' }}>
                   <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 'clamp(22px,2.5vw,32px)', color: '#F4F0E8' }}>{stat.n}</span>
-                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'rgba(200,220,200,0.55)', letterSpacing: '0.06em' }}>{stat.label}</span>
+                  <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'rgba(200,220,200,0.55)', letterSpacing: '0.06em' }}>{stat.label}</span>
                 </div>
               ))}
             </div>
@@ -1583,10 +1583,10 @@ function GivePartner() {
       <div style={{ background: sage, padding: '20px clamp(24px,6vw,96px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 20 }}>
           <div style={{ width: 32, height: 1, background: 'rgba(255,255,255,0.3)', flexShrink: 0 }} />
-          <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 'clamp(13px,1.2vw,15px)', color: 'rgba(255,255,255,0.72)', margin: 0 }}>
+          <p style={{ fontFamily: "'Fraunces', serif", fontStyle: 'italic', fontSize: 'clamp(15px,1.2vw,17px)', color: 'rgba(255,255,255,0.72)', margin: 0 }}>
             "Each of you should give what you have decided in your heart to give — not reluctantly or under compulsion, for God loves a cheerful giver."
           </p>
-          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.38)', flexShrink: 0, marginLeft: 'auto' }}>2 Cor 9:7</span>
+          <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, letterSpacing: '0.15em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.38)', flexShrink: 0, marginLeft: 'auto' }}>2 Cor 9:7</span>
         </div>
       </div>
 
@@ -1597,7 +1597,7 @@ function GivePartner() {
           {/* Giving tier selector */}
           <Reveal>
             <div style={{ marginBottom: 'clamp(40px,6vw,72px)' }}>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: sageMid, marginBottom: 20 }}>Choose a giving level</div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: sageMid, marginBottom: 20 }}>Choose a giving level</div>
               <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4,1fr)', gap: 10 }} className="tier-grid">
                 {DONATION_TIERS.map(t => {
                   const isActive = activeTier === t.label
@@ -1619,13 +1619,13 @@ function GivePartner() {
                         lineHeight: 1, marginBottom: 8,
                       }}>{t.amount}</div>
                       <div style={{
-                        fontFamily: "'DM Sans', sans-serif", fontSize: 10,
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 12,
                         letterSpacing: '0.12em', textTransform: 'uppercase',
                         color: isActive ? 'rgba(255,255,255,0.7)' : sageMid,
                         marginBottom: 10,
                       }}>{t.label}</div>
                       <div style={{
-                        fontFamily: "'DM Sans', sans-serif", fontSize: 12,
+                        fontFamily: "'DM Sans', sans-serif", fontSize: 14,
                         color: isActive ? 'rgba(255,255,255,0.65)' : 'rgba(32,35,34,0.5)',
                         lineHeight: 1.55,
                       }}>{t.impact}</div>
@@ -1641,7 +1641,7 @@ function GivePartner() {
 
             {/* Left: Ministry areas */}
             <Reveal>
-              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: '0.18em', textTransform: 'uppercase', color: sageMid, marginBottom: 16 }}>Direct your gift toward</div>
+              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, letterSpacing: '0.18em', textTransform: 'uppercase', color: sageMid, marginBottom: 16 }}>Direct your gift toward</div>
               <div style={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
                 {GIVING_AREAS.map((g) => {
                   const isActive = activeArea === g.title
@@ -1661,7 +1661,7 @@ function GivePartner() {
                       <div>
                         <div style={{
                           fontFamily: "'Fraunces', serif", fontWeight: 700,
-                          fontSize: 14, color: isActive ? sageDark : 'var(--muted)',
+                          fontSize: 16, color: isActive ? sageDark : 'var(--muted)',
                           marginBottom: isActive ? 4 : 0, transition: 'color 0.22s',
                         }}>{g.title}</div>
                         <AnimatePresence>
@@ -1669,7 +1669,7 @@ function GivePartner() {
                             <motion.div initial={{ height: 0, opacity: 0 }} animate={{ height: 'auto', opacity: 1 }}
                               exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.28, ease: E }}
                               style={{ overflow: 'hidden' }}>
-                              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: sageMid, lineHeight: 1.6 }}>{g.desc}</div>
+                              <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: sageMid, lineHeight: 1.6 }}>{g.desc}</div>
                             </motion.div>
                           )}
                         </AnimatePresence>
@@ -1696,8 +1696,8 @@ function GivePartner() {
                     </svg>
                   </div>
                   <div>
-                    <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 17, color: sageDark, lineHeight: 1 }}>Give to {activeArea}</div>
-                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: sageMid, marginTop: 3 }}>{activeTier} · {DONATION_TIERS.find(t => t.label === activeTier)?.amount}</div>
+                    <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 19, color: sageDark, lineHeight: 1 }}>Give to {activeArea}</div>
+                    <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: sageMid, marginTop: 3 }}>{activeTier} · {DONATION_TIERS.find(t => t.label === activeTier)?.amount}</div>
                   </div>
                 </div>
 
@@ -1709,8 +1709,8 @@ function GivePartner() {
                         <path d="M4 10l5 5 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                       </svg>
                     </div>
-                    <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 18, color: sageDark, marginBottom: 8 }}>Gift received — thank you.</div>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: sageMid, margin: 0, lineHeight: 1.7 }}>The Mispha team will be in touch shortly with giving details.</p>
+                    <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 20, color: sageDark, marginBottom: 8 }}>Gift received — thank you.</div>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: sageMid, margin: 0, lineHeight: 1.7 }}>The Mispha team will be in touch shortly with giving details.</p>
                   </motion.div>
                 ) : (
                   <form onSubmit={async e => { 
@@ -1737,11 +1737,11 @@ function GivePartner() {
                     {/* Summary pill */}
                     <div style={{ padding: '12px 16px', background: sageBg, border: `1px solid ${sageBorder}`, display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
                       <div>
-                        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, letterSpacing: '0.12em', textTransform: 'uppercase', color: sageMid, marginBottom: 3 }}>Your giving summary</div>
-                        <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 13, color: sageDark }}>{activeArea} · {activeTier}</div>
+                        <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, letterSpacing: '0.12em', textTransform: 'uppercase', color: sageMid, marginBottom: 3 }}>Your giving summary</div>
+                        <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 15, color: sageDark }}>{activeArea} · {activeTier}</div>
                       </div>
                       <button type="button" onClick={() => setActiveTier('')}
-                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, color: sageMid, background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>
+                        style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: sageMid, background: 'none', border: 'none', cursor: 'pointer', textDecoration: 'underline', padding: 0 }}>
                         Change
                       </button>
                     </div>
@@ -1754,14 +1754,14 @@ function GivePartner() {
                       color: 'white',
                       fontFamily: "'DM Sans', sans-serif",
                       fontWeight: 600,
-                      fontSize: 13.5,
+                      fontSize: 15.5,
                       letterSpacing: '0.04em',
                       cursor: 'pointer',
                       transition: 'background 0.22s',
                     }}>
                       Submit My Gift Interest →
                     </button>
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: 'rgba(77,107,79,0.55)', lineHeight: 1.6, margin: 0, textAlign: 'center' }}>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'rgba(77,107,79,0.55)', lineHeight: 1.6, margin: 0, textAlign: 'center' }}>
                       This form connects you with the ministry team who will share bank and UPI details directly.
                     </p>
                   </form>
@@ -1805,7 +1805,7 @@ function Contact() {
               <h2 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(28px,4vw,48px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 24, letterSpacing: '-0.02em' }}>
                 We are here to<br /><em style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--burgundy)' }}>pray and listen</em>
               </h2>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 16, color: 'var(--muted)', lineHeight: 1.85, marginBottom: 36 }}>
+              <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 18, color: 'var(--muted)', lineHeight: 1.85, marginBottom: 36 }}>
                 All prayer requests and counselling enquiries are treated with complete confidentiality. Nothing is published publicly without your permission.
               </p>
             </Reveal>
@@ -1820,7 +1820,7 @@ function Contact() {
                     <div className="label" style={{ marginBottom: 8, color: 'var(--muted)' }}>{item.label}</div>
                     {item.href ? (
                       <a href={item.href} style={{
-                        fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 20,
+                        fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 22,
                         color: 'var(--ink)', textDecoration: 'none', display: 'block',
                       }}>{item.val}</a>
                     ) : (
@@ -1844,7 +1844,7 @@ function Contact() {
                   <button key={t.id} onClick={() => { setTab(t.id); setSent(null) }}
                     style={{
                       background: 'none', border: 'none', cursor: 'pointer', padding: '12px 18px',
-                      fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase',
+                      fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600, letterSpacing: '0.09em', textTransform: 'uppercase',
                       color: tab === t.id ? 'var(--ink)' : 'var(--muted)',
                       borderBottom: `2px solid ${tab === t.id ? 'var(--brick)' : 'transparent'}`,
                       marginBottom: -1, transition: 'all 0.25s',
@@ -1854,8 +1854,8 @@ function Contact() {
               {sent === tab ? (
                 <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
                   style={{ padding: '32px', background: 'white', border: '1px solid var(--border)', textAlign: 'center', borderRadius: 16 }}>
-                  <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 20, color: 'var(--ink)', marginBottom: 12 }}>Received</div>
-                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', lineHeight: 1.75 }}>
+                  <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 22, color: 'var(--ink)', marginBottom: 12 }}>Received</div>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'var(--muted)', lineHeight: 1.75 }}>
                     {tab === 'prayer' ? 'Your prayer request has been received. It will be held in confidence and brought before the ministry in prayer.'
                       : tab === 'counselling' ? 'Your counselling request has been received. The ministry will contact you to arrange a confidential conversation.'
                         : 'Your message has been received. The ministry will respond as soon as possible.'}
@@ -1883,7 +1883,7 @@ function Contact() {
                       <option>Work and provision</option><option>Ministry and calling</option><option>Other</option>
                     </select>
                     <textarea name="request" className="field" rows={5} placeholder="Your prayer request" required style={{ resize: 'vertical' }} />
-                    <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'var(--muted)', lineHeight: 1.6, cursor: 'pointer' }}>
+                    <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', lineHeight: 1.6, cursor: 'pointer' }}>
                       <input name="consent" type="checkbox" style={{ marginTop: 3, flexShrink: 0, accentColor: 'var(--brick)' }} />
                       I consent to the ministry holding this request privately for prayer purposes.
                     </label>
@@ -1898,7 +1898,7 @@ function Contact() {
                     </select>
                     <input name="language" className="field" placeholder="Preferred language" />
                     <textarea name="desc" className="field" rows={3} placeholder="Brief description (general topics only)" style={{ resize: 'vertical' }} />
-                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.6 }}>All enquiries are treated with complete confidentiality. For immediate crisis support, please contact your local emergency services.</p>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.6 }}>All enquiries are treated with complete confidentiality. For immediate crisis support, please contact your local emergency services.</p>
                   </>)}
                   {tab === 'contact' && (<>
                     <input name="name" className="field" placeholder="Name" required />
@@ -1940,7 +1940,7 @@ function FinalCTA() {
             Every vision needs people<br />willing to{' '}
             <em style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--brick)' }}>pray, serve and build</em>
           </h2>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 18, color: 'rgba(244,240,232,0.45)', lineHeight: 1.85, maxWidth: 520, margin: '0 auto 52px' }}>
+          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 20, color: 'rgba(244,240,232,0.45)', lineHeight: 1.85, maxWidth: 520, margin: '0 auto 52px' }}>
             There is a place for you in the Mispha Ministries family, whether you come to pray, to partner, to serve or to learn.
           </p>
         </Reveal>
@@ -1967,7 +1967,7 @@ function Footer() {
   const go = (id: string) => document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
   const ls: React.CSSProperties = {
     display: 'block', background: 'none', border: 'none', cursor: 'pointer',
-    fontFamily: "'DM Sans', sans-serif", fontSize: 14,
+    fontFamily: "'DM Sans', sans-serif", fontSize: 16,
     color: 'rgba(244,240,232,0.38)', marginBottom: 12,
     textAlign: 'left', padding: 0, transition: 'color 0.25s', lineHeight: 1.5,
   }
@@ -1978,18 +1978,18 @@ function Footer() {
           <div>
             <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 22 }}>
               <img src={img157} alt="Mispha logo" style={{ width: 38, height: 38, objectFit: 'contain', mixBlendMode: 'lighten' }} />
-              <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 14, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#F4F0E8', lineHeight: 1 }}>Mispha Ministries</div>
+              <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 16, letterSpacing: '0.12em', textTransform: 'uppercase', color: '#F4F0E8', lineHeight: 1 }}>Mispha Ministries</div>
             </div>
-            <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 15, color: 'rgba(181,101,74,0.5)', lineHeight: 1.85, maxWidth: 260, marginBottom: 22 }}>
+            <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 17, color: 'rgba(181,101,74,0.5)', lineHeight: 1.85, maxWidth: 260, marginBottom: 22 }}>
               Prayer is the key for vision.<br />Vision is the key for heaven.<br />Heaven is the key for prayer.
             </p>
             <a href="tel:+919884970978"
-              style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 16, color: '#F4F0E8', textDecoration: 'none', display: 'inline-block' }}>
+              style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 18, color: '#F4F0E8', textDecoration: 'none', display: 'inline-block' }}>
               +91 98849 70978
             </a>
           </div>
           <div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 10.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)', marginBottom: 20 }}>Ministry</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 12.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)', marginBottom: 20 }}>Ministry</div>
             {[{ label: 'Our Calling', id: 'calling' }, { label: 'Church Strengthening', id: 'training' }, { label: 'Leadership Network', id: 'leadership' }, { label: 'Annual Covenant', id: 'covenant' }].map(l => (
               <button key={l.id} onClick={() => go(l.id)} style={ls}
                 onMouseEnter={e => (e.currentTarget.style.color = 'rgba(244,240,232,0.82)')}
@@ -1997,7 +1997,7 @@ function Footer() {
             ))}
           </div>
           <div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 10.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)', marginBottom: 20 }}>Projects &amp; Media</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 12.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)', marginBottom: 20 }}>Projects &amp; Media</div>
             {[{ label: 'Vision Projects', id: 'vision' }, { label: 'From the Pulpit', id: 'pulpit' }, { label: 'Board Members', id: 'leadership-board' }, { label: 'Gallery', id: 'gallery' }].map(l => (
               <button key={l.id} onClick={() => go(l.id)} style={ls}
                 onMouseEnter={e => (e.currentTarget.style.color = 'rgba(244,240,232,0.82)')}
@@ -2005,7 +2005,7 @@ function Footer() {
             ))}
           </div>
           <div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 10.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)', marginBottom: 20 }}>Connect</div>
+            <div style={{ fontFamily: "'DM Sans', sans-serif", fontWeight: 600, fontSize: 12.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(200,168,130,0.55)', marginBottom: 20 }}>Connect</div>
             {[{ label: 'Give & Partner', id: 'give' }, { label: 'Request Prayer', id: 'contact' }, { label: 'Counselling', id: 'contact' }, { label: 'General Contact', id: 'contact' }].map((l, i) => (
               <button key={`${l.id}-${i}`} onClick={() => go(l.id)} style={ls}
                 onMouseEnter={e => (e.currentTarget.style.color = 'rgba(244,240,232,0.82)')}
@@ -2016,11 +2016,11 @@ function Footer() {
         <div style={{ borderTop: '1px solid rgba(181,101,74,0.08)', paddingTop: 28, display: 'flex', justifyContent: 'space-between', alignItems: 'center', flexWrap: 'wrap', gap: 16 }}>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <img src={img157} alt="" style={{ width: 18, height: 18, objectFit: 'contain', mixBlendMode: 'lighten', opacity: 0.3 }} />
-            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'rgba(244,240,232,0.2)' }}>Mispha Ministries. Registered organisation details will be published here.</span>
+            <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'rgba(244,240,232,0.2)' }}>Mispha Ministries. Registered organisation details will be published here.</span>
           </div>
           <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' }}>
             {['Privacy Policy', 'Donation Policy', 'Terms'].map(l => (
-              <span key={l} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'rgba(244,240,232,0.16)' }}>{l}</span>
+              <span key={l} style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'rgba(244,240,232,0.16)' }}>{l}</span>
             ))}
           </div>
         </div>
@@ -2063,7 +2063,75 @@ export default function App() {
 
   return (
     <>
+      <style>{`
+        /* Overall readability improvements */
+        body {
+          font-size: 17px;
+          line-height: 1.65;
+        }
+
+        p {
+          font-size: 17px !important;
+          line-height: 1.75 !important;
+        }
+
+        nav button {
+          font-size: 15px !important;
+        }
+
+        nav a {
+          font-size: 14px !important;
+        }
+
+        .btn {
+          font-size: 14px !important;
+          line-height: 1.2 !important;
+        }
+
+        .label {
+          font-size: 12px !important;
+        }
+
+        input,
+        textarea,
+        select {
+          font-size: 16px !important;
+        }
+
+        footer button,
+        footer a,
+        footer span {
+          font-size: 14px !important;
+          line-height: 1.6 !important;
+        }
+
+        small {
+          font-size: 13px !important;
+        }
+
+        @media (max-width: 768px) {
+          body {
+            font-size: 16px;
+          }
+
+          p {
+            font-size: 16px !important;
+            line-height: 1.7 !important;
+          }
+
+          nav button,
+          nav a {
+            font-size: 16px !important;
+          }
+
+          .btn {
+            font-size: 14px !important;
+          }
+        }
+      `}</style>
+
       <Loader onDone={handleDone} />
+
       {loaded && (
         <>
           <ScrollProgress />

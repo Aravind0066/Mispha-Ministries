@@ -220,3 +220,55 @@ button { font-family: inherit; }
 @media (min-width: 769px) {
   .show-mobile  { display: none !important; }
 }
+
+/* ─── Readability improvements ───────────────────────────────────────────── */
+
+html {
+  font-size: 17px;
+}
+
+body {
+  font-size: 17px;
+  line-height: 1.65;
+}
+
+/* Normal paragraph text */
+p {
+  font-size: clamp(16px, 1vw, 18px) !important;
+  line-height: 1.7 !important;
+}
+
+/* Header navigation */
+header nav a,
+header nav button {
+  font-size: 14px !important;
+  letter-spacing: 0.02em;
+}
+
+/* Standard buttons and links styled as buttons */
+button,
+.btn,
+.button {
+  font-size: 14px !important;
+}
+
+/* Small uppercase section labels */
+.label,
+.eyebrow,
+.kicker {
+  font-size: 12px !important;
+  letter-spacing: 0.16em;
+}
+
+/* Forms and admin fields */
+input,
+textarea,
+select {
+  font-size: 16px !important;
+}
+
+/* Keep genuinely secondary text readable */
+small {
+  font-size: 13px !important;
+  line-height: 1.5;
+}

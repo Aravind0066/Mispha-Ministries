@@ -2,13 +2,13 @@ import { NavLink } from 'react-router-dom'
 
 export default function AdminNav({ onLogout }: { onLogout: () => void }) {
   const links = [
-    { to: '/admin', label: 'Dashboard', icon: '📊' },
-    { to: '/admin/forms', label: 'Forms Inbox', icon: '📥' },
-    { to: '/admin/gallery', label: 'Gallery', icon: '🖼️' },
-    { to: '/admin/board', label: 'Board Members', icon: '👥' },
-    { to: '/admin/sermons', label: 'Sermons', icon: '🎙️' },
-    { to: '/admin/content', label: 'Site Content', icon: '✏️' },
-    { to: '/admin/settings', label: 'Settings', icon: '⚙️' },
+    { to: '/admin', label: 'Dashboard' },
+    { to: '/admin/forms', label: 'Forms Inbox' },
+    { to: '/admin/gallery', label: 'Gallery' },
+    { to: '/admin/board', label: 'Board Members' },
+    { to: '/admin/sermons', label: 'Sermons' },
+    { to: '/admin/content', label: 'Site Content' },
+    { to: '/admin/settings', label: 'Settings' },
   ]
 
   return (
@@ -28,7 +28,7 @@ export default function AdminNav({ onLogout }: { onLogout: () => void }) {
               background: isActive ? 'rgba(255,255,255,0.05)' : 'transparent',
               borderLeft: `3px solid ${isActive ? '#B5654A' : 'transparent'}`,
             })}>
-            <span>{link.icon}</span> {link.label}
+            <span></span> {link.label}
           </NavLink>
         ))}
       </div>
