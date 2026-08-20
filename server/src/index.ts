@@ -1,6 +1,8 @@
 import 'dotenv/config'
+import 'express-async-errors'
 import express from 'express'
 import cors from 'cors'
+import { PrismaClient } from '@prisma/client'
 import { authRouter } from './auth'
 import { formsRouter } from './routes/forms'
 import { contentRouter } from './routes/content'
@@ -8,6 +10,7 @@ import { adminRouter } from './routes/admin'
 
 const app = express()
 const PORT = process.env.PORT || 3001
+const prisma = new PrismaClient()
 
 // ─── CORS ────────────────────────────────────────────────────────────────────
 const allowedOrigins = (process.env.ALLOWED_ORIGINS || '')
@@ -51,6 +54,35 @@ app.use('/api/admin', adminRouter)
 
 // ─── Health check ────────────────────────────────────────────────────────────
 app.get('/api/health', (_req, res) => res.json({ status: 'ok', ts: new Date() }))
+
+app.get('/api/health/db', async (_req, res) => {
+  try {
+    await prisma.$queryRaw`SELECT 1`
+    return res.json({ status: 'ok', db: 'connected' })
+  } catch (error: any) {
+    console.error('DB health check failed:', error)
+    return res.status(500).json({
+      status: 'error',
+      db: 'disconnected',
+      message: error?.message || 'Database connection failed',
+    })
+  }
+})
+
+// ─── Error handling ───────────────────────────────────────────────────────────
+app.use((err: any, _req: express.Request, res: express.Response, _next: express.NextFunction) => {
+  console.error('Unhandled API error:', err)
+  if (res.headersSent) return
+  res.status(500).json({ error: err?.message || 'Internal server error' })
+})
+
+process.on('unhandledRejection', (reason) => {
+  console.error('Unhandled promise rejection:', reason)
+})
+
+process.on('uncaughtException', (error) => {
+  console.error('Uncaught exception:', error)
+})
 
 // ─── Start ───────────────────────────────────────────────────────────────────
 app.listen(PORT, () => {
