@@ -1,6 +1,6 @@
 // Central API helper — uses VITE_API_URL in production,
-// or an empty string (Vite proxy) during local development.
-const BASE = import.meta.env.VITE_API_URL ?? ''
+// or defaults to the production Render backend URL.
+const BASE = import.meta.env.VITE_API_URL || 'https://mispha-backend-api-2026.onrender.com'
 
 export async function apiFetch<T>(
   path: string,
