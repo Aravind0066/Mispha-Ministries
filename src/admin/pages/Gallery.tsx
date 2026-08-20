@@ -57,7 +57,7 @@ export default function Gallery() {
 
       {editing && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
-          <div style={{ background: '#fff', padding: 32, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto' }}>
+          <div style={{ background: '#fff', padding: 32, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto', borderRadius: 12 }}>
             <h2 style={{ fontFamily: "'Fraunces', serif", marginTop: 0 }}>{editing.id ? 'Edit Image' : 'New Image'}</h2>
             <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <ImageUpload currentUrl={editing.url} onUploaded={url => setEditing({ ...editing, url })} />

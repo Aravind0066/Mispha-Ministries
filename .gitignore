@@ -3,3 +3,8 @@ dist/
 .env
 .env.*
 !.env.example
+.figma/
+server/prisma/dev.db
+server/prisma/dev.db-journal
+uploads/
+.DS_Store

@@ -29,7 +29,7 @@ export default function Login({ onLogin }: { onLogin: (token: string) => void })
       <div style={{ width: '100%', maxWidth: 400, padding: 40, background: '#fff', border: '1px solid #E5E2DA', boxShadow: '0 8px 30px rgba(0,0,0,0.04)' }}>
         <div style={{ textAlign: 'center', marginBottom: 32 }}>
           <h1 style={{ fontFamily: "'Fraunces', serif", fontSize: 24, fontWeight: 700, color: '#1A1A1A', marginBottom: 8 }}>Mispha Admin</h1>
-          <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: '#6B6E6D' }}>Sign in to manage the ministry site.</p>
+          <p style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 14, color: '#6B6E6D' }}>Sign in to manage the ministry site.</p>
         </div>
         
         {error && <div style={{ padding: 12, background: '#FDF0ED', color: '#C0392B', fontSize: 13, marginBottom: 20, border: '1px solid #FADBD8' }}>{error}</div>}

@@ -45,7 +45,7 @@ export default function ImageUpload({ currentUrl, onUploaded, label = 'Upload Im
 
   return (
     <div>
-      <label style={{ display: 'block', marginBottom: 8, fontFamily: "'DM Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6E6D' }}>
+      <label style={{ display: 'block', marginBottom: 8, fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 12, fontWeight: 600, letterSpacing: '0.08em', textTransform: 'uppercase', color: '#6B6E6D' }}>
         {label}
       </label>
       <div
@@ -73,7 +73,7 @@ export default function ImageUpload({ currentUrl, onUploaded, label = 'Upload Im
             <div style={{
               position: 'absolute', inset: 0, background: 'rgba(0,0,0,0.45)', opacity: 0,
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              color: '#fff', fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 600,
+              color: '#fff', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 13, fontWeight: 600,
               transition: 'opacity 0.2s',
             }}
               onMouseEnter={(e) => (e.currentTarget.style.opacity = '1')}
@@ -85,13 +85,13 @@ export default function ImageUpload({ currentUrl, onUploaded, label = 'Upload Im
         ) : (
           <>
             <div style={{ fontSize: 32, marginBottom: 8 }}>🖼️</div>
-            <div style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: '#9B9E9D' }}>
+            <div style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 13, color: '#9B9E9D' }}>
               {uploading ? 'Uploading…' : 'Drag & drop or click to upload'}
             </div>
           </>
         )}
       </div>
-      {error && <div style={{ marginTop: 6, fontFamily: "'DM Sans', sans-serif", fontSize: 11, color: '#C0392B' }}>{error}</div>}
+      {error && <div style={{ marginTop: 6, fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 11, color: '#C0392B' }}>{error}</div>}
     </div>
   )
 }

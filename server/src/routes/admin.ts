@@ -1,41 +1,64 @@
 import { Router, type Request, type Response } from 'express'
 import { PrismaClient } from '@prisma/client'
 import { authGuard } from '../middleware/authGuard'
+import { createClient } from '@supabase/supabase-js'
 import multer from 'multer'
+import crypto from 'crypto'
 import path from 'path'
-import fs from 'fs'
 
 const prisma = new PrismaClient()
 export const adminRouter = Router()
 
+// ─── Supabase Storage client ─────────────────────────────────────────────────
+const supabase = createClient(
+  process.env.SUPABASE_URL ?? '',
+  process.env.SUPABASE_SERVICE_ROLE_KEY ?? ''
+)
+const STORAGE_BUCKET = 'uploads'
+
 // All admin routes are protected
 adminRouter.use(authGuard)
 
-// Configure local multer storage
-const uploadDir = path.join(__dirname, '../../../uploads')
-if (!fs.existsSync(uploadDir)) {
-  fs.mkdirSync(uploadDir, { recursive: true })
-}
-
-const storage = multer.diskStorage({
-  destination: (_req, _file, cb) => {
-    cb(null, uploadDir)
+// ─── Multer (memory storage — files go to Supabase, not disk) ────────────────
+const upload = multer({
+  storage: multer.memoryStorage(),
+  limits: { fileSize: 10 * 1024 * 1024 }, // 10 MB
+  fileFilter: (_req, file, cb) => {
+    const allowed = /jpeg|jpg|png|gif|webp|svg/
+    const ext = allowed.test(path.extname(file.originalname).toLowerCase())
+    const mime = allowed.test(file.mimetype)
+    cb(null, ext && mime)
   },
-  filename: (_req, file, cb) => {
-    const uniqueSuffix = Date.now() + '-' + Math.round(Math.random() * 1e9)
-    cb(null, uniqueSuffix + path.extname(file.originalname))
-  }
 })
 
-const upload = multer({ storage })
-
-// POST /api/admin/upload
-adminRouter.post('/upload', upload.single('file'), (req: Request, res: Response) => {
+// POST /api/admin/upload — Upload image to Supabase Storage
+adminRouter.post('/upload', upload.single('file'), async (req: Request, res: Response) => {
   if (!req.file) {
     return res.status(400).json({ error: 'No file uploaded' })
   }
-  const url = `/uploads/${req.file.filename}`
-  return res.json({ url })
+
+  const ext = path.extname(req.file.originalname).toLowerCase()
+  const uniqueName = `${Date.now()}-${crypto.randomBytes(6).toString('hex')}${ext}`
+  const filePath = `images/${uniqueName}`
+
+  const { error } = await supabase.storage
+    .from(STORAGE_BUCKET)
+    .upload(filePath, req.file.buffer, {
+      contentType: req.file.mimetype,
+      upsert: false,
+    })
+
+  if (error) {
+    console.error('Supabase Storage upload error:', error)
+    return res.status(500).json({ error: 'Failed to upload image.' })
+  }
+
+  // Get public URL
+  const { data: urlData } = supabase.storage
+    .from(STORAGE_BUCKET)
+    .getPublicUrl(filePath)
+
+  return res.json({ url: urlData.publicUrl })
 })
 
 // ─── Summary Dashboard ────────────────────────────────────────────────────────

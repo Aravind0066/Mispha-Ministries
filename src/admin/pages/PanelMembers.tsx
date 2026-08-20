@@ -41,7 +41,7 @@ export default function PanelMembers() {
         <div style={{ display: 'flex', flexDirection: 'column', gap: 24 }}>
           {items.map(item => (
             <div key={item.id} style={{ background: '#fff', border: '1px solid #E5E2DA', display: 'flex', gap: 24, padding: 24 }}>
-              <img src={item.imageUrl || 'https://via.placeholder.com/150'} alt={item.name} style={{ width: 120, height: 160, objectFit: 'cover' }} />
+              <img src={item.imageUrl || 'data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="150" height="150" fill="%23f4f0e8"><rect width="150" height="150" /></svg>'} alt={item.name} style={{ width: 120, height: 160, objectFit: 'cover' }} />
               <div style={{ flex: 1 }}>
                 <div style={{ fontSize: 11, color: '#6B6E6D', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 4 }}>{item.role}</div>
                 <h3 style={{ fontFamily: "'Fraunces', serif", fontSize: 22, margin: '0 0 12px 0' }}>{item.name}</h3>
@@ -59,7 +59,7 @@ export default function PanelMembers() {
 
       {editing && (
         <div style={{ position: 'fixed', inset: 0, background: 'rgba(0,0,0,0.5)', display: 'flex', alignItems: 'center', justifyContent: 'center', zIndex: 100 }}>
-          <div style={{ background: '#fff', padding: 32, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto' }}>
+          <div style={{ background: '#fff', padding: 32, width: '100%', maxWidth: 500, maxHeight: '90vh', overflowY: 'auto', borderRadius: 12 }}>
             <h2 style={{ fontFamily: "'Fraunces', serif", marginTop: 0 }}>{editing.id ? 'Edit Member' : 'New Member'}</h2>
             <form onSubmit={handleSave} style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
               <ImageUpload currentUrl={editing.imageUrl} onUploaded={url => setEditing({ ...editing, imageUrl: url })} />

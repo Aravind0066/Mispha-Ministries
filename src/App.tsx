@@ -25,13 +25,13 @@ import imgBibleCollege from './assets/Bible College.png'
 
 const E = [0.16, 1, 0.3, 1] as const
 
-function Reveal({ children, delay = 0, y = 40, className = '' }: {
-  children: ReactNode; delay?: number; y?: number; className?: string
+function Reveal({ children, delay = 0, y = 40, className = '', style }: {
+  children: ReactNode; delay?: number; y?: number; className?: string; style?: React.CSSProperties
 }) {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: '-70px' })
   return (
-    <motion.div ref={ref} className={className}
+    <motion.div ref={ref} className={className} style={style}
       initial={{ opacity: 0, y }}
       animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.85, ease: E, delay }}
@@ -200,7 +200,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             <button key={n.id} onClick={() => go(n.id)}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer', padding: '8px 14px',
-                fontFamily: "'DM Sans', sans-serif", fontSize: 17, fontWeight: 700,
+                fontFamily: "'Outfit', sans-serif", fontSize: 18, fontWeight: 700,
                 letterSpacing: '0.05em', textTransform: 'uppercase',
                 color: 'var(--charcoal)', transition: 'color 0.2s',
               }}
@@ -236,7 +236,11 @@ function Navbar({ loaded }: { loaded: boolean }) {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             transition={{ duration: 0.28 }}
             style={{
-              position: 'fixed', inset: 0, zIndex: 9999, background: 'var(--ivory)',
+              position: 'fixed', inset: 0, zIndex: 9999,
+              background: 'rgba(255,255,255,0.15)',
+              backdropFilter: 'blur(12px)',
+              WebkitBackdropFilter: 'blur(12px)',
+              borderRadius: 'var(--radius-lg)',
               display: 'flex', flexDirection: 'column', padding: '28px 32px 44px',
             }}
           >
@@ -298,7 +302,7 @@ function Hero() {
       <div style={{
         position: 'relative', zIndex: 2,
         display: 'flex', flexDirection: 'column', justifyContent: 'center',
-        padding: 'clamp(120px,14vh,170px) clamp(28px,4vw,56px) 80px clamp(32px,6vw,100px)',
+        padding: 'clamp(100px,12vh,150px) clamp(24px,4vw,48px) 80px clamp(28px,6vw,90px)',
       }}>
         {/* vertical rule between columns */}
         <div style={{ position: 'absolute', right: 0, top: '10%', bottom: '10%', width: 1, background: 'rgba(181,101,74,0.15)' }} />
@@ -317,8 +321,8 @@ function Hero() {
                 transition={{ duration: 0.78, ease: E, delay: 0.65 + i * 0.1 }}
                 style={{
                   fontFamily: "'Fraunces', serif", fontWeight: 800,
-                  fontSize: 'clamp(36px,4.8vw,70px)',
-                  color: 'var(--ink)', lineHeight: 1.03, marginBottom: 2,
+                  fontSize: 'clamp(42px,5vw,80px)',
+                  color: 'var(--ink)', lineHeight: 1.03, marginBottom: 4,
                   letterSpacing: '-0.02em',
                 }}>{line}</motion.h1>
             </div>
@@ -328,8 +332,8 @@ function Hero() {
               transition={{ duration: 0.78, ease: E, delay: 0.86 }}
               style={{
                 fontFamily: "'DM Sans', sans-serif", fontWeight: 400, fontStyle: 'italic',
-                fontSize: 'clamp(18px,2vw,28px)',
-                color: 'var(--brick)', lineHeight: 1.4, marginTop: 12,
+                fontSize: 'clamp(20px,2.2vw,30px)',
+                color: 'var(--brick)', lineHeight: 1.5, marginTop: 12,
               }}>Sending the Gospel forward.</motion.p>
           </div>
         </div>
@@ -1008,8 +1012,8 @@ function AnnualCovenant() {
           subtitle="These are not targets imposed from above. They are covenants made together as a ministry family, renewed each year."
         />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(24px,4vw,48px)' }} className="covenant-grid">
-          <Reveal delay={0.1}>
-            <div style={{ background: '#202322', padding: 'clamp(32px,4vw,52px)', borderRadius: 16 }}>
+          <Reveal delay={0.1} style={{ height: '100%' }}>
+            <div style={{ background: '#202322', padding: 'clamp(32px,4vw,52px)', borderRadius: 16, height: '100%', display: 'flex', flexDirection: 'column' }}>
               <div style={{ width: 2, height: 48, background: 'var(--brick)', marginBottom: 28 }} />
               <span className="label" style={{ color: 'rgba(181,101,74,0.7)', marginBottom: 12, display: 'block' }}>For Pastors &amp; Leaders</span>
               <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(20px,2.6vw,28px)', color: '#F4F0E8', lineHeight: 1.15, marginBottom: 36, letterSpacing: '-0.01em' }}>Year Targets<br />for Pastors</h3>
@@ -1021,13 +1025,13 @@ function AnnualCovenant() {
                   <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'rgba(244,240,232,0.75)', lineHeight: 1.65 }}>{item}</span>
                 </div>
               ))}
-              <div style={{ marginTop: 32, padding: '14px 0', borderTop: '1px solid rgba(181,101,74,0.12)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'rgba(244,240,232,0.3)', fontStyle: 'italic' }}>
+              <div style={{ marginTop: 'auto', paddingTop: 32, borderTop: '1px solid rgba(181,101,74,0.12)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'rgba(244,240,232,0.3)', fontStyle: 'italic' }}>
                 Progress updates will be published here when ministry details are confirmed.
               </div>
             </div>
           </Reveal>
-          <Reveal delay={0.2}>
-            <div style={{ background: 'white', border: '1px solid var(--border)', padding: 'clamp(32px,4vw,52px)', borderRadius: 16 }}>
+          <Reveal delay={0.2} style={{ height: '100%' }}>
+            <div style={{ background: 'white', border: '1px solid var(--border)', padding: 'clamp(32px,4vw,52px)', borderRadius: 16, height: '100%', display: 'flex', flexDirection: 'column' }}>
               <div style={{ width: 2, height: 48, background: 'var(--sage)', marginBottom: 28 }} />
               <span className="label" style={{ color: 'var(--sage)', marginBottom: 12, display: 'block' }}>For Every Believer</span>
               <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(20px,2.6vw,28px)', color: 'var(--ink)', lineHeight: 1.15, marginBottom: 36, letterSpacing: '-0.01em' }}>Year Targets<br />for Believers</h3>
@@ -1039,7 +1043,7 @@ function AnnualCovenant() {
                   <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 17, color: 'var(--muted)', lineHeight: 1.65 }}>{item}</span>
                 </div>
               ))}
-              <div style={{ marginTop: 32 }}>
+              <div style={{ marginTop: 'auto', paddingTop: 32 }}>
                 <button className="btn btn-primary" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
                   Join a Care Cell
                 </button>

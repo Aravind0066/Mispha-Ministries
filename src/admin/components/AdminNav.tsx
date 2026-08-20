@@ -23,7 +23,7 @@ export default function AdminNav({ onLogout }: { onLogout: () => void }) {
           <NavLink key={link.to} to={link.to} end={link.to === '/admin'}
             style={({ isActive }) => ({
               padding: '12px 24px', display: 'flex', alignItems: 'center', gap: 12,
-              textDecoration: 'none', fontFamily: "'DM Sans', sans-serif", fontSize: 14,
+              textDecoration: 'none', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 14,
               color: isActive ? '#fff' : 'rgba(244,240,232,0.5)',
               background: isActive ? 'rgba(255,255,255,0.05)' : 'transparent',
               borderLeft: `3px solid ${isActive ? '#B5654A' : 'transparent'}`,
@@ -34,7 +34,7 @@ export default function AdminNav({ onLogout }: { onLogout: () => void }) {
       </div>
 
       <div style={{ padding: 24, borderTop: '1px solid rgba(255,255,255,0.05)' }}>
-        <button onClick={onLogout} style={{ width: '100%', padding: '10px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', color: '#F4F0E8', cursor: 'pointer', fontFamily: "'DM Sans', sans-serif", fontSize: 13 }}>
+        <button onClick={onLogout} style={{ width: '100%', padding: '10px', background: 'transparent', border: '1px solid rgba(255,255,255,0.1)', color: '#F4F0E8', cursor: 'pointer', fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 13 }}>
           Sign Out
         </button>
       </div>

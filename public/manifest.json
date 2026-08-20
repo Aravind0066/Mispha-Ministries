@@ -1,0 +1,9 @@
+{
+  "name": "Mispha Ministries",
+  "short_name": "Mispha",
+  "description": "Church, Mission, and Training",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#F4F0E8",
+  "theme_color": "#F4F0E8"
+}
