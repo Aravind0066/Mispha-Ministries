@@ -1,18 +1,14 @@
 import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
+import { apiFetch } from './api'
 
 // Ministry images
 import img157    from './image_157_.png'
-import img158    from './image_158_.png'
 import img159    from './image_159_.png'
 import img161    from './image_161_.png'
 import img162    from './image_162_.png'
 import img162b   from './image_162_.png'
-import img163    from './image_163_.png'
-import img164    from './image_164_.png'
-import img165    from './image_165_.png'
 import img166    from './image_166_.png'
-import imgChildPraying        from './image-1.png'
 import imgPalmSunday          from './assets/training-session.jpg'
 import imgYoungPastors        from './assets/hero-ministry.jpg'
 import imgJohnBenniPreaching  from './image_166_.png'
@@ -199,17 +195,17 @@ function Navbar({ loaded }: { loaded: boolean }) {
         </button>
 
         {/* Desktop nav */}
-        <div className="hide-mobile" style={{ display: 'flex', gap: 0 }}>
+        <div className="hide-mobile" style={{ display: 'flex', gap: 4 }}>
           {NAV.map(n => (
             <button key={n.id} onClick={() => go(n.id)}
               style={{
                 background: 'none', border: 'none', cursor: 'pointer', padding: '8px 14px',
-                fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 500,
-                letterSpacing: '0.1em', textTransform: 'uppercase',
-                color: 'var(--muted)', transition: 'color 0.2s',
+                fontFamily: "'DM Sans', sans-serif", fontSize: 13, fontWeight: 700,
+                letterSpacing: '0.05em', textTransform: 'uppercase',
+                color: 'var(--charcoal)', transition: 'color 0.2s',
               }}
               onMouseEnter={e => (e.currentTarget.style.color = 'var(--brick)')}
-              onMouseLeave={e => (e.currentTarget.style.color = 'var(--muted)')}
+              onMouseLeave={e => (e.currentTarget.style.color = 'var(--charcoal)')}
             >{n.label}</button>
           ))}
         </div>
@@ -546,6 +542,7 @@ function OurCalling() {
                   padding: '18px 22px',
                   background: active === i ? '#fff' : 'transparent',
                   border: `1px solid ${active === i ? 'var(--brick)' : 'transparent'}`,
+                  borderRadius: 12,
                   boxShadow: active === i ? '0 4px 24px rgba(181,101,74,0.13), 0 1px 6px rgba(32,35,34,0.07)' : 'none',
                   transition: 'background 0.25s, border-color 0.25s, box-shadow 0.3s',
                   display: 'grid', gridTemplateColumns: '48px 1fr', gap: 18, alignItems: 'start',
@@ -586,7 +583,7 @@ function OurCalling() {
           {/* Right — fixed church mural */}
           <Reveal>
             <div style={{ position: 'sticky', top: '120px' }}>
-              <div style={{ position: 'relative', paddingBottom: '133%' /* 3/4 aspect ratio */ }}>
+              <div style={{ position: 'relative', paddingBottom: '133%', borderRadius: 16, overflow: 'hidden' /* 3/4 aspect ratio */ }}>
                 <img
                   src={imgTrainingSession}
                   alt="Sacred Heart of Jesus Christ — devotional painting"
@@ -870,7 +867,8 @@ function LeadershipNetwork() {
                     background: active ? '#fff' : 'transparent',
                     border: 'none',
                     borderLeft: `3px solid ${active ? 'var(--brick)' : 'transparent'}`,
-                    borderBottom: '1px solid var(--border)',
+                    borderBottom: active ? 'none' : '1px solid var(--border)',
+                    borderRadius: active ? '12px 12px 0 0' : 12,
                     boxShadow: active ? '0 4px 32px rgba(32,35,34,0.07), 0 1px 8px rgba(181,101,74,0.08)' : 'none',
                     transition: 'background 0.25s, border-left-color 0.25s, box-shadow 0.3s',
                     display: 'grid',
@@ -911,7 +909,7 @@ function LeadershipNetwork() {
                     <motion.div
                       initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }}
                       exit={{ opacity: 0, height: 0 }} transition={{ duration: 0.38, ease: E }}
-                      style={{ overflow: 'hidden', background: '#fff', borderLeft: '3px solid var(--brick)', borderBottom: '1px solid var(--border)' }}>
+                      style={{ overflow: 'hidden', background: '#fff', borderLeft: '3px solid var(--brick)', borderBottom: '1px solid var(--border)', borderRight: '1px solid var(--border)', borderRadius: '0 0 12px 12px' }}>
                       <div style={{ padding: 'clamp(16px,2vw,24px) clamp(20px,2.5vw,32px) clamp(20px,2vw,28px)', paddingLeft: 'calc(72px + clamp(16px,2vw,32px) + clamp(20px,2.5vw,32px))' }}>
                         <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 14.5, color: 'var(--muted)', lineHeight: 1.85, margin: '0 0 18px', maxWidth: 620 }}>{t.detail}</p>
                         <button className="btn btn-outline btn-outline-dark btn-arrow" style={{ fontSize: 10.5 }}
@@ -929,7 +927,7 @@ function LeadershipNetwork() {
 
         {/* Enquiry form — anchored by id for scroll-to */}
         <Reveal>
-          <div id="enquiry-form" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(32px,5vw,64px)', alignItems: 'start', padding: 'clamp(28px,4vw,48px)', background: 'white', border: '1px solid var(--border)' }} className="enquiry-grid">
+          <div id="enquiry-form" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(32px,5vw,64px)', alignItems: 'start', padding: 'clamp(28px,4vw,48px)', background: 'white', border: '1px solid var(--border)', borderRadius: 16 }} className="enquiry-grid">
             <div>
               <span className="label" style={{ color: 'var(--brick)', marginBottom: 12, display: 'block' }}>Programme Enquiry</span>
               <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(20px,2.2vw,28px)', color: 'var(--ink)', marginBottom: 12, lineHeight: 1.2 }}>
@@ -946,7 +944,21 @@ function LeadershipNetwork() {
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'var(--muted)', margin: 0 }}>The ministry will be in touch shortly.</p>
                 </div>
               ) : (
-                <form onSubmit={e => { e.preventDefault(); setEnquirySent(true) }} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <form onSubmit={async e => { 
+                  e.preventDefault(); 
+                  const fd = new FormData(e.currentTarget as HTMLFormElement);
+                  await apiFetch('/api/forms/leadership', {
+                    method: 'POST',
+                    body: JSON.stringify({
+                      name: fd.get('name'),
+                      phone: fd.get('phone'),
+                      church: fd.get('church'),
+                      track: activeTrack,
+                      notes: fd.get('notes'),
+                    })
+                  });
+                  setEnquirySent(true); 
+                }} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   <div style={{ position: 'relative' }}>
                     <select value={activeTrack} onChange={e => setActiveTrack(e.target.value)} required aria-label="Leadership track"
                       style={{
@@ -954,7 +966,7 @@ function LeadershipNetwork() {
                         padding: '13px 40px 13px 14px', background: 'white',
                         border: '1px solid var(--border)', color: activeTrack ? 'var(--ink)' : 'var(--muted)',
                         fontFamily: "'DM Sans', sans-serif", fontSize: 14, cursor: 'pointer',
-                        outline: 'none', borderRadius: 0,
+                        outline: 'none', borderRadius: 12,
                       }}>
                       <option value="" disabled>Select a programme track</option>
                       {LEADERSHIP_TRACKS.map(t => <option key={t.id} value={t.id}>{t.label}</option>)}
@@ -964,9 +976,9 @@ function LeadershipNetwork() {
                     </svg>
                   </div>
                   {track && track.fields.map((f, fi) => (
-                    <input key={fi} className="field" type={f.type} placeholder={f.placeholder} required={f.required} />
+                    <input key={fi} name={f.placeholder.toLowerCase().includes('name') ? 'name' : f.placeholder.toLowerCase().includes('phone') ? 'phone' : 'church'} className="field" type={f.type} placeholder={f.placeholder} required={f.required} />
                   ))}
-                  <textarea className="field" placeholder="Anything else you would like us to know (optional)" rows={3} style={{ resize: 'vertical' }} />
+                  <textarea name="notes" className="field" placeholder="Anything else you would like us to know (optional)" rows={3} style={{ resize: 'vertical' }} />
                   <button type="submit" className="btn btn-brass" style={{ marginTop: 6 }} disabled={!activeTrack}>
                     Submit Enquiry
                   </button>
@@ -997,7 +1009,7 @@ function AnnualCovenant() {
         />
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(24px,4vw,48px)' }} className="covenant-grid">
           <Reveal delay={0.1}>
-            <div style={{ background: '#202322', padding: 'clamp(32px,4vw,52px)' }}>
+            <div style={{ background: '#202322', padding: 'clamp(32px,4vw,52px)', borderRadius: 16 }}>
               <div style={{ width: 2, height: 48, background: 'var(--brick)', marginBottom: 28 }} />
               <span className="label" style={{ color: 'rgba(181,101,74,0.7)', marginBottom: 12, display: 'block' }}>For Pastors &amp; Leaders</span>
               <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(20px,2.6vw,28px)', color: '#F4F0E8', lineHeight: 1.15, marginBottom: 36, letterSpacing: '-0.01em' }}>Year Targets<br />for Pastors</h3>
@@ -1015,7 +1027,7 @@ function AnnualCovenant() {
             </div>
           </Reveal>
           <Reveal delay={0.2}>
-            <div style={{ background: 'white', border: '1px solid var(--border)', padding: 'clamp(32px,4vw,52px)' }}>
+            <div style={{ background: 'white', border: '1px solid var(--border)', padding: 'clamp(32px,4vw,52px)', borderRadius: 16 }}>
               <div style={{ width: 2, height: 48, background: 'var(--sage)', marginBottom: 28 }} />
               <span className="label" style={{ color: 'var(--sage)', marginBottom: 12, display: 'block' }}>For Every Believer</span>
               <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(20px,2.6vw,28px)', color: 'var(--ink)', lineHeight: 1.15, marginBottom: 36, letterSpacing: '-0.01em' }}>Year Targets<br />for Believers</h3>
@@ -1064,7 +1076,7 @@ function VisionCard({ project: p, expanded, setExpanded }: { project: VProject; 
       initial={{ opacity: 0, y: 28 }} animate={inView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.75 }}
       onClick={() => setExpanded(isOpen ? null : p.title)}
-      style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer', minHeight: 260, background: '#1A1410' }}
+      style={{ position: 'relative', overflow: 'hidden', cursor: 'pointer', minHeight: 260, background: '#1A1410', borderRadius: 16 }}
     >
       <img src={p.img} alt={p.alt}
         style={{
@@ -1133,19 +1145,27 @@ const MEDIA_FILTERS = ['All', 'Sermons', 'Bible Teaching', 'Pastor Training', 'M
 
 function FromThePulpit() {
   const [filter, setFilter] = useState('All')
+  const [sermons, setSermons] = useState<any[]>([])
+
+  useEffect(() => {
+    apiFetch<any[]>('/api/content/sermons').then(res => {
+      if (res.length > 0) setSermons(res)
+    }).catch(console.error)
+  }, [])
+
   return (
     <section id="pulpit" style={{ padding: 'clamp(80px,10vw,160px) clamp(24px,6vw,96px)', background: 'var(--parchment)', position: 'relative', overflow: 'hidden' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 'clamp(40px,6vw,80px)', alignItems: 'center' }} className="pulpit-grid">
           <Reveal y={60}>
             <div style={{ position: 'relative' }}>
-              <div style={{ overflow: 'hidden', background: '#2A1535', aspectRatio: '3/4', position: 'relative' }}>
+              <div style={{ overflow: 'hidden', background: '#2A1535', aspectRatio: '3/4', position: 'relative', borderRadius: 16 }}>
                 <img src={imgJohnBenniPreaching} alt="Rev. D. John Benni preaching with microphone"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
                 <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(20,8,28,0.55) 0%, transparent 55%)' }} />
               </div>
-              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 20px', background: 'rgba(20,8,28,0.65)', backdropFilter: 'blur(4px)' }}>
-                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 9.5, letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.6)' }}>
+              <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '14px 20px', background: 'rgba(20,8,28,0.65)', backdropFilter: 'blur(4px)', borderBottomLeftRadius: 16, borderBottomRightRadius: 16 }}>
+                <span style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 10, fontWeight: 700, letterSpacing: '0.05em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.8)' }}>
                   Rev. D. John Benni · President
                 </span>
               </div>
@@ -1176,6 +1196,7 @@ function FromThePulpit() {
                     style={{
                       background: filter === f ? 'var(--brick)' : 'transparent',
                       border: `1px solid ${filter === f ? 'var(--brick)' : 'rgba(32,35,34,0.18)'}`,
+                      borderRadius: 99,
                       padding: '7px 16px', cursor: 'pointer',
                       fontFamily: "'DM Sans', sans-serif", fontSize: 11, fontWeight: 600, letterSpacing: '0.1em', textTransform: 'uppercase',
                       color: filter === f ? '#fff' : 'rgba(32,35,34,0.45)',
@@ -1185,11 +1206,24 @@ function FromThePulpit() {
               </div>
             </Reveal>
             <Reveal delay={0.2}>
-              <div style={{ padding: '28px', background: 'white', border: '1px solid var(--border)' }}>
-                <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 16, color: 'var(--muted)', lineHeight: 1.75 }}>
-                  Sermon titles, video archives and message notes will be published here. Check back as the media library develops.
-                </p>
-              </div>
+              {sermons.length > 0 ? (
+                <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+                  {sermons.map(s => (
+                    <div key={s.id} style={{ padding: '24px', background: 'white', border: '1px solid var(--border)', borderRadius: 12 }}>
+                      <div style={{ fontSize: 11, color: 'var(--brick)', textTransform: 'uppercase', letterSpacing: '0.05em', marginBottom: 8 }}>{new Date(s.date).toLocaleDateString()} • {s.category}</div>
+                      <h4 style={{ fontFamily: "'Fraunces', serif", fontSize: 18, margin: '0 0 8px 0', color: 'var(--ink)' }}>{s.title}</h4>
+                      <div style={{ fontSize: 14, color: 'var(--muted)', marginBottom: s.embedUrl ? 16 : 0 }}>{s.speaker}</div>
+                      {s.embedUrl && <a href={s.embedUrl} target="_blank" rel="noreferrer" style={{ fontSize: 13, color: 'var(--brick)', fontWeight: 600, textDecoration: 'none' }}>Watch Video →</a>}
+                    </div>
+                  ))}
+                </div>
+              ) : (
+                <div style={{ padding: '28px', background: 'white', border: '1px solid var(--border)', borderRadius: 12 }}>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 16, color: 'var(--muted)', lineHeight: 1.75 }}>
+                    Sermon titles, video archives and message notes will be published here. Check back as the media library develops.
+                  </p>
+                </div>
+              )}
             </Reveal>
           </div>
         </div>
@@ -1199,60 +1233,79 @@ function FromThePulpit() {
   )
 }
 
-// ─── BOARD MEMBERS ────────────────────────────────────────────────────────────
-
 function BoardMembers() {
+  const [members, setMembers] = useState<any[]>([])
+
+  useEffect(() => {
+    apiFetch<any[]>('/api/content/board-members').then(res => {
+      if (res.length > 0) setMembers(res)
+    }).catch(console.error)
+  }, [])
+
+  if (members.length === 0) return null
+
   return (
     <section id="leadership-board" style={{ padding: 'clamp(80px,10vw,160px) clamp(24px,6vw,96px)', background: '#F4F0E8', position: 'relative', overflow: 'hidden' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto' }}>
         <SectionHead
           label="Board Members"
           title={<>Shepherds of the<br /><em style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontWeight: 400, color: 'var(--burgundy)' }}>Mission</em></>}
-          subtitle="The ministry is led by two servant-leaders whose lives reflect the calling of Mispha Ministries."
+          subtitle="The ministry is led by servant-leaders whose lives reflect the calling of Mispha Ministries."
         />
 
-        {/* President */}
-        <Reveal>
-          <div style={{ display: 'grid', gridTemplateColumns: '55% 1fr', gap: 'clamp(32px,5vw,72px)', alignItems: 'end', marginBottom: 'clamp(48px,7vw,96px)' }} className="board-l">
-            <div style={{ position: 'relative', overflow: 'hidden', background: '#C8C3B8', aspectRatio: '4/5' }}>
-              <img src={img162b} alt="Rev. D. John Benni — President, Mispha Ministries"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(32,35,34,0.18) 0%, transparent 40%)' }} />
-            </div>
-            <div style={{ paddingBottom: 8 }}>
-              <div style={{ width: 2, height: 48, background: 'var(--burgundy)', marginBottom: 24 }} />
-              <span className="label" style={{ marginBottom: 12, display: 'block' }}>President</span>
-              <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(24px,3vw,40px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 8, letterSpacing: '-0.02em' }}>Rev. D. John Benni</h3>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 18, color: 'var(--burgundy)', marginBottom: 28 }}>President, Mispha Ministries</p>
-              <div style={{ padding: '18px 22px', background: 'white', borderLeft: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75, marginBottom: 32 }}>
-                Biography and personal testimony will be added here with the ministry's approval.
-              </div>
-              <button className="btn btn-primary" onClick={() => document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' })}>
-                Contact the Ministry
-              </button>
-            </div>
-          </div>
-        </Reveal>
+        {members.map((member, i) => {
+          const isLeft = member.side === 'left' || (!member.side && i % 2 === 0)
+          
+          if (isLeft) {
+            return (
+              <Reveal key={member.id} delay={0.1 * i}>
+                <div style={{ display: 'grid', gridTemplateColumns: '55% 1fr', gap: 'clamp(32px,5vw,72px)', alignItems: 'end', marginBottom: 'clamp(48px,7vw,96px)' }} className="board-l">
+                  <div style={{ position: 'relative', overflow: 'hidden', background: '#C8C3B8', aspectRatio: '4/5', borderRadius: 16 }}>
+                    {member.imageUrl || member.role === 'President' || member.role === 'Secretary & Treasurer' ? (
+                      <img src={member.imageUrl || (member.role === 'President' ? img162b : img159)} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+                    ) : (
+                      <div style={{ width: '100%', height: '100%', background: 'rgba(0,0,0,0.05)' }} />
+                    )}
+                    <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(32,35,34,0.18) 0%, transparent 40%)' }} />
+                  </div>
+                  <div style={{ paddingBottom: 8 }}>
+                    <div style={{ width: 2, height: 48, background: 'var(--burgundy)', marginBottom: 24 }} />
+                    <span className="label" style={{ marginBottom: 12, display: 'block' }}>{member.role}</span>
+                    <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(24px,3vw,40px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 8, letterSpacing: '-0.02em' }}>{member.name}</h3>
+                    <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 18, color: 'var(--burgundy)', marginBottom: 28 }}>{member.role}, Mispha Ministries</p>
+                    <div style={{ padding: '18px 22px', background: 'white', borderLeft: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75, marginBottom: 32 }}>
+                      {member.bio || "Biography will be added here."}
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            )
+          }
 
-        {/* Secretary & Treasurer */}
-        <Reveal delay={0.1}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 55%', gap: 'clamp(32px,5vw,72px)', alignItems: 'end' }} className="board-r">
-            <div style={{ paddingBottom: 8 }}>
-              <div style={{ width: 2, height: 48, background: 'var(--sage)', marginBottom: 24, marginLeft: 'auto' }} />
-              <span className="label" style={{ marginBottom: 12, display: 'block', textAlign: 'right' }}>Secretary &amp; Treasurer</span>
-              <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(24px,3vw,40px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 8, textAlign: 'right', letterSpacing: '-0.02em' }}>Pas. Rosyelavarasi T.</h3>
-              <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 18, color: 'var(--sage)', marginBottom: 28, textAlign: 'right' }}>Secretary &amp; Treasurer, Mispha Ministries</p>
-              <div style={{ padding: '18px 22px', background: 'white', borderRight: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75 }}>
-                Biography and personal testimony will be added here with the ministry's approval.
+          return (
+            <Reveal key={member.id} delay={0.1 * i}>
+              <div style={{ display: 'grid', gridTemplateColumns: '1fr 55%', gap: 'clamp(32px,5vw,72px)', alignItems: 'end', marginBottom: 'clamp(48px,7vw,96px)' }} className="board-r">
+                <div style={{ paddingBottom: 8 }}>
+                  <div style={{ width: 2, height: 48, background: 'var(--sage)', marginBottom: 24, marginLeft: 'auto' }} />
+                  <span className="label" style={{ marginBottom: 12, display: 'block', textAlign: 'right' }}>{member.role}</span>
+                  <h3 style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 'clamp(24px,3vw,40px)', color: 'var(--ink)', lineHeight: 1.08, marginBottom: 8, textAlign: 'right', letterSpacing: '-0.02em' }}>{member.name}</h3>
+                  <p style={{ fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 18, color: 'var(--sage)', marginBottom: 28, textAlign: 'right' }}>{member.role}, Mispha Ministries</p>
+                  <div style={{ padding: '18px 22px', background: 'white', borderRight: '2px solid var(--border)', fontFamily: "'DM Sans', sans-serif", fontSize: 14, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.75 }}>
+                    {member.bio || "Biography will be added here."}
+                  </div>
+                </div>
+                <div style={{ position: 'relative', overflow: 'hidden', background: '#C8C3B8', aspectRatio: '4/5', borderRadius: 16 }}>
+                  {member.imageUrl || member.role === 'President' || member.role === 'Secretary & Treasurer' ? (
+                    <img src={member.imageUrl || (member.role === 'President' ? img162b : img159)} alt={member.name} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
+                  ) : (
+                    <div style={{ width: '100%', height: '100%', background: 'rgba(0,0,0,0.05)' }} />
+                  )}
+                  <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(32,35,34,0.12) 0%, transparent 40%)' }} />
+                </div>
               </div>
-            </div>
-            <div style={{ position: 'relative', overflow: 'hidden', background: '#C8C3B8', aspectRatio: '4/5' }}>
-              <img src={img159} alt="Pas. Rosyelavarasi T. — Secretary and Treasurer, Mispha Ministries"
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center top', display: 'block' }} />
-              <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(32,35,34,0.12) 0%, transparent 40%)' }} />
-            </div>
-          </div>
-        </Reveal>
+            </Reveal>
+          )
+        })}
       </div>
       <style>{`
         @media(max-width:768px){
@@ -1294,7 +1347,28 @@ const GALLERY_SLIDES = [
 
 function GallerySection() {
   const [active, setActive] = useState(0)
-  const slide = GALLERY_SLIDES[active]
+  const [slides, setSlides] = useState<any[]>([])
+
+  useEffect(() => {
+    apiFetch<any[]>('/api/content/gallery').then(res => {
+      if (res.length > 0) {
+        // Map over the results and provide static fallbacks if URL is missing
+        const mapped = res.map((r, i) => ({
+          ...r,
+          url: r.url || GALLERY_SLIDES[i % GALLERY_SLIDES.length].img
+        }))
+        setSlides(mapped)
+      } else {
+        setSlides(GALLERY_SLIDES)
+      }
+    }).catch((err) => {
+      console.error(err)
+      setSlides(GALLERY_SLIDES)
+    })
+  }, [])
+
+  if (slides.length === 0) return null
+  const slide = slides[active] || slides[0]
 
   return (
     <section id="gallery" style={{ padding: 'clamp(60px,8vw,120px) 0', background: '#F4F0E8', overflow: 'hidden' }}>
@@ -1315,7 +1389,7 @@ function GallerySection() {
             </div>
             {/* Navigation dots */}
             <div style={{ display: 'flex', gap: 10, alignItems: 'center', paddingBottom: 6 }}>
-              {GALLERY_SLIDES.map((_, i) => (
+              {slides.map((_, i) => (
                 <button key={i} onClick={() => setActive(i)}
                   aria-label={`View slide ${i + 1}`}
                   style={{
@@ -1339,22 +1413,22 @@ function GallerySection() {
             transition={{ duration: 0.55, ease: E }}
             style={{
               display: 'grid', gridTemplateColumns: '1fr 1fr',
-              gap: 0, border: '1px solid var(--border)', overflow: 'hidden', background: '#FFFFFF',
+              gap: 0, border: '1px solid var(--border)', overflow: 'hidden', background: '#FFFFFF', borderRadius: 16,
               boxShadow: '0 12px 34px rgba(32,35,34,0.06)',
             }}
             className="gallery-featured"
           >
             {/* Photo */}
-            <div style={{ position: 'relative', overflow: 'hidden', alignSelf: 'stretch', minHeight: 0, background: '#ECE8DE', padding: 'clamp(12px,1.6vw,20px)' }} className="gallery-photo">
-              <img src={slide.img} alt={slide.alt}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', background: '#FFFFFF', boxShadow: '0 5px 16px rgba(32,35,34,0.10)', transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)' }}
+            <div style={{ position: 'relative', overflow: 'hidden', alignSelf: 'stretch', minHeight: 0, background: '#ECE8DE', padding: 'clamp(12px,1.6vw,20px)', borderRadius: 16 }} className="gallery-photo">
+              <img src={slide.url || slide.img} alt={slide.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center', display: 'block', background: '#FFFFFF', boxShadow: '0 5px 16px rgba(32,35,34,0.10)', transition: 'transform 0.7s cubic-bezier(0.16,1,0.3,1)', borderRadius: 8 }}
               />
               {/* index badge */}
               <div style={{
                 position: 'absolute', top: 'clamp(24px,3vw,40px)', left: 'clamp(24px,3vw,40px)',
                 fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic', fontSize: 42, fontWeight: 500,
                 color: 'rgba(255,255,255,0.35)', lineHeight: 1, userSelect: 'none',
-              }}>{slide.index}</div>
+              }}>{String(active + 1).padStart(2, '0')}</div>
             </div>
 
             {/* Details panel */}
@@ -1397,10 +1471,10 @@ function GallerySection() {
               {/* Navigation arrows */}
               <div style={{ display: 'flex', gap: 10, marginTop: 40 }}>
                 <button
-                  onClick={() => setActive(a => (a - 1 + GALLERY_SLIDES.length) % GALLERY_SLIDES.length)}
+                  onClick={() => setActive(a => (a - 1 + slides.length) % slides.length)}
                   aria-label="Previous"
                   style={{
-                    width: 44, height: 44, border: '1px solid var(--border)',
+                    width: 44, height: 44, border: '1px solid var(--border)', borderRadius: '50%',
                     background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: 'var(--muted)', transition: 'all 0.22s',
                   }}
@@ -1410,10 +1484,10 @@ function GallerySection() {
                   ←
                 </button>
                 <button
-                  onClick={() => setActive(a => (a + 1) % GALLERY_SLIDES.length)}
+                  onClick={() => setActive(a => (a + 1) % slides.length)}
                   aria-label="Next"
                   style={{
-                    width: 44, height: 44, border: '1px solid var(--border)',
+                    width: 44, height: 44, border: '1px solid var(--border)', borderRadius: '50%',
                     background: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center',
                     color: 'var(--muted)', transition: 'all 0.22s',
                   }}
@@ -1429,7 +1503,7 @@ function GallerySection() {
                 }}>
                   <span style={{ color: 'var(--ink)', fontWeight: 500 }}>{String(active + 1).padStart(2, '0')}</span>
                   <span style={{ margin: '0 6px' }}>/</span>
-                  {String(GALLERY_SLIDES.length).padStart(2, '0')}
+                  {String(slides.length).padStart(2, '0')}
                 </div>
               </div>
             </div>
@@ -1534,6 +1608,7 @@ function GivePartner() {
                         padding: '22px 20px',
                         background: isActive ? sage : 'white',
                         border: `1px solid ${isActive ? sage : sageBorder}`,
+                        borderRadius: 12,
                         boxShadow: isActive ? '0 6px 28px rgba(77,107,79,0.22)' : 'none',
                         transition: 'all 0.28s',
                       }}>
@@ -1578,6 +1653,7 @@ function GivePartner() {
                         background: isActive ? 'white' : 'transparent',
                         border: `1px solid ${isActive ? sageBorder : 'transparent'}`,
                         borderLeft: `3px solid ${isActive ? sage : 'transparent'}`,
+                        borderRadius: 12,
                         boxShadow: isActive ? '0 2px 16px rgba(77,107,79,0.12)' : 'none',
                         transition: 'all 0.22s',
                         display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
@@ -1612,7 +1688,7 @@ function GivePartner() {
 
             {/* Right: Donation form */}
             <Reveal delay={0.15}>
-              <div style={{ background: 'white', border: `1px solid ${sageBorder}`, padding: 'clamp(24px,3.5vw,44px)', position: 'sticky', top: 120 }}>
+              <div style={{ background: 'white', border: `1px solid ${sageBorder}`, borderRadius: 16, padding: 'clamp(24px,3.5vw,44px)', position: 'sticky', top: 120 }}>
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 22 }}>
                   <div style={{ width: 36, height: 36, background: sageBg, border: `1px solid ${sageBorder}`, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
@@ -1627,7 +1703,7 @@ function GivePartner() {
 
                 {sent ? (
                   <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-                    style={{ padding: '28px 24px', background: sageBg, border: `1px solid ${sageBorder}`, textAlign: 'center' }}>
+                    style={{ padding: '28px 24px', background: sageBg, border: `1px solid ${sageBorder}`, borderRadius: 12, textAlign: 'center' }}>
                     <div style={{ width: 44, height: 44, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px' }}>
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
                         <path d="M4 10l5 5 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
@@ -1637,7 +1713,14 @@ function GivePartner() {
                     <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: sageMid, margin: 0, lineHeight: 1.7 }}>The Mispha team will be in touch shortly with giving details.</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <form onSubmit={async e => { 
+                    e.preventDefault(); 
+                    await apiFetch('/api/forms/donation', {
+                      method: 'POST',
+                      body: JSON.stringify({ ...form, area: activeArea, tier: activeTier })
+                    });
+                    setSent(true); 
+                  }} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <input className="field" placeholder="Your name" value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })} required
                       style={{ borderColor: sageBorder, outline: 'none' }}
@@ -1733,7 +1816,7 @@ function Contact() {
                   { label: 'Email', val: 'Email address will be published here', large: false, italic: true },
                   { label: 'Ministry Address', val: 'Address will be published here', large: false, italic: true },
                 ].map((item, i) => (
-                  <div key={i} style={{ padding: '18px 22px', background: 'white', border: '1px solid var(--border)' }}>
+                  <div key={i} style={{ padding: '18px 22px', background: 'white', border: '1px solid var(--border)', borderRadius: 12 }}>
                     <div className="label" style={{ marginBottom: 8, color: 'var(--muted)' }}>{item.label}</div>
                     {item.href ? (
                       <a href={item.href} style={{
@@ -1770,7 +1853,7 @@ function Contact() {
               </div>
               {sent === tab ? (
                 <motion.div initial={{ opacity: 0, y: 14 }} animate={{ opacity: 1, y: 0 }}
-                  style={{ padding: '32px', background: 'white', border: '1px solid var(--border)', textAlign: 'center' }}>
+                  style={{ padding: '32px', background: 'white', border: '1px solid var(--border)', textAlign: 'center', borderRadius: 16 }}>
                   <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 20, color: 'var(--ink)', marginBottom: 12 }}>Received</div>
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', lineHeight: 1.75 }}>
                     {tab === 'prayer' ? 'Your prayer request has been received. It will be held in confidence and brought before the ministry in prayer.'
@@ -1779,44 +1862,55 @@ function Contact() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
+                <form onSubmit={async e => { 
+                  e.preventDefault(); 
+                  const fd = new FormData(e.currentTarget as HTMLFormElement);
+                  if (tab === 'prayer') {
+                    await apiFetch('/api/forms/prayer', { method: 'POST', body: JSON.stringify({ name: fd.get('name'), contact: fd.get('contact'), category: fd.get('category'), request: fd.get('request'), consent: !!fd.get('consent') }) });
+                  } else if (tab === 'counselling') {
+                    await apiFetch('/api/forms/counselling', { method: 'POST', body: JSON.stringify({ name: fd.get('name'), phone: fd.get('phone'), email: fd.get('email'), type: fd.get('type'), language: fd.get('language'), description: fd.get('desc') }) });
+                  } else {
+                    await apiFetch('/api/forms/contact', { method: 'POST', body: JSON.stringify({ name: fd.get('name'), phone: fd.get('phone'), email: fd.get('email'), reason: fd.get('reason'), message: fd.get('message') }) });
+                  }
+                  setSent(tab); 
+                }} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {tab === 'prayer' && (<>
-                    <input className="field" placeholder="Name (optional)" />
-                    <input className="field" placeholder="Phone or email (optional)" />
-                    <select className="field">
+                    <input name="name" className="field" placeholder="Name (optional)" />
+                    <input name="contact" className="field" placeholder="Phone or email (optional)" />
+                    <select name="category" className="field">
                       <option value="">Prayer category</option>
                       <option>Health</option><option>Family</option><option>Salvation</option>
                       <option>Work and provision</option><option>Ministry and calling</option><option>Other</option>
                     </select>
-                    <textarea className="field" rows={5} placeholder="Your prayer request" required style={{ resize: 'vertical' }} />
+                    <textarea name="request" className="field" rows={5} placeholder="Your prayer request" required style={{ resize: 'vertical' }} />
                     <label style={{ display: 'flex', gap: 10, alignItems: 'flex-start', fontFamily: "'DM Sans', sans-serif", fontSize: 13, color: 'var(--muted)', lineHeight: 1.6, cursor: 'pointer' }}>
-                      <input type="checkbox" style={{ marginTop: 3, flexShrink: 0, accentColor: 'var(--brick)' }} />
+                      <input name="consent" type="checkbox" style={{ marginTop: 3, flexShrink: 0, accentColor: 'var(--brick)' }} />
                       I consent to the ministry holding this request privately for prayer purposes.
                     </label>
                   </>)}
                   {tab === 'counselling' && (<>
-                    <input className="field" placeholder="Full name" required />
-                    <input className="field" placeholder="Phone number" required />
-                    <input className="field" type="email" placeholder="Email address (optional)" />
-                    <select className="field">
+                    <input name="name" className="field" placeholder="Full name" required />
+                    <input name="phone" className="field" placeholder="Phone number" required />
+                    <input name="email" className="field" type="email" placeholder="Email address (optional)" />
+                    <select name="type" className="field">
                       <option value="">Individual, couple or family</option>
                       <option>Individual</option><option>Couple</option><option>Family</option>
                     </select>
-                    <input className="field" placeholder="Preferred language" />
-                    <textarea className="field" rows={3} placeholder="Brief description (general topics only)" style={{ resize: 'vertical' }} />
+                    <input name="language" className="field" placeholder="Preferred language" />
+                    <textarea name="desc" className="field" rows={3} placeholder="Brief description (general topics only)" style={{ resize: 'vertical' }} />
                     <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 12, color: 'var(--muted)', fontStyle: 'italic', lineHeight: 1.6 }}>All enquiries are treated with complete confidentiality. For immediate crisis support, please contact your local emergency services.</p>
                   </>)}
                   {tab === 'contact' && (<>
-                    <input className="field" placeholder="Name" required />
-                    <input className="field" placeholder="Phone number" />
-                    <input className="field" type="email" placeholder="Email address" />
-                    <select className="field">
+                    <input name="name" className="field" placeholder="Name" required />
+                    <input name="phone" className="field" placeholder="Phone number" />
+                    <input name="email" className="field" type="email" placeholder="Email address" />
+                    <select name="reason" className="field">
                       <option value="">Reason for contact</option>
                       <option>General enquiry</option><option>Training programme</option>
                       <option>Partnership</option><option>Media team</option>
                       <option>Volunteer opportunities</option><option>Other</option>
                     </select>
-                    <textarea className="field" rows={4} placeholder="Your message" style={{ resize: 'vertical' }} />
+                    <textarea name="message" className="field" rows={4} placeholder="Your message" style={{ resize: 'vertical' }} />
                   </>)}
                   <button type="submit" className="btn btn-primary" style={{ marginTop: 8 }}>
                     {tab === 'prayer' ? 'Submit Prayer Request' : tab === 'counselling' ? 'Send Counselling Request' : 'Send Message'}

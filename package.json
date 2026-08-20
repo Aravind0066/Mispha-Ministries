@@ -1,10 +1,13 @@
 {
-  "name": "figma-make-app",
+  "name": "mispha-ministries",
   "private": true,
   "version": "1.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite --host 0.0.0.0",
+    "dev": "concurrently \"vite --host 0.0.0.0\" \"npm run server:dev\" --names \"frontend,backend\" --prefix-colors \"cyan,yellow\"",
+    "dev:frontend": "vite --host 0.0.0.0",
+    "server:dev": "cd server && npm run dev",
+    "server:setup": "cd server && npm install && npx prisma db push && npm run db:seed",
     "build": "vite build",
     "preview": "vite preview",
     "format": "oxfmt"
@@ -12,14 +15,17 @@
   "dependencies": {
     "framer-motion": "^13.1.0",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react-dom": "^19.0.0",
+    "react-router-dom": "^7.1.0"
   },
   "devDependencies": {
     "@tailwindcss/vite": "^4.0.0",
     "@types/node": "^22.0.0",
     "@types/react": "^19.0.0",
     "@types/react-dom": "^19.0.0",
+    "@types/react-router-dom": "^5.3.3",
     "@vitejs/plugin-react": "^6.0.0",
+    "concurrently": "^9.1.0",
     "oxfmt": "^0.2.0",
     "tailwindcss": "^4.0.0",
     "typescript": "^5.7.0",

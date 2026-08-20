@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300;0,9..144,400;0,9..144,500;0,9..144,700;0,9..144,800;0,9..144,900;1,9..144,300;1,9..144,400;1,9..144,600&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,600&display=swap');
 @import 'tailwindcss';
 
 :root {
@@ -48,7 +48,7 @@ html::-webkit-scrollbar-thumb { background: rgba(181,101,74,0.4); border-radius:
 
 body {
   margin: 0;
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   background: var(--ivory);
   color: var(--ink);
   -webkit-font-smoothing: antialiased;
@@ -61,10 +61,15 @@ p { margin: 0; }
 button { font-family: inherit; }
 
 .font-display { font-family: 'Fraunces', serif; font-weight: 700; }
-.font-body  { font-family: 'DM Sans', sans-serif; }
+.font-body  { font-family: 'Plus Jakarta Sans', sans-serif; }
+
+/* Custom override for inline styles specifying DM Sans */
+[style*="DM Sans"] {
+  font-family: 'Plus Jakarta Sans', sans-serif !important;
+}
 
 .label {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   font-size: 10.5px;
   font-weight: 600;
   letter-spacing: 0.24em;
@@ -91,33 +96,37 @@ button { font-family: inherit; }
 /* Buttons */
 .btn {
   display: inline-flex; align-items: center; gap: 10px;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 11.5px; font-weight: 600;
-  letter-spacing: 0.1em; text-transform: uppercase;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.05em; text-transform: uppercase;
   border: none; cursor: pointer;
-  border-radius: 0;
-  transition: background 0.25s, color 0.25s, opacity 0.25s;
+  border-radius: 99px; /* Pill shape! */
+  transition: background 0.25s, color 0.25s, opacity 0.25s, transform 0.2s, box-shadow 0.2s;
   white-space: nowrap;
 }
+.btn:active { transform: scale(0.98); }
 
 .btn-primary {
   padding: 13px 28px;
   background: var(--desert-turquoise);
   color: #fff;
+  box-shadow: 0 4px 12px rgba(122, 158, 142, 0.25);
 }
-.btn-primary:hover { background: #5f8070; }
+.btn-primary:hover { background: #5f8070; box-shadow: 0 6px 16px rgba(122, 158, 142, 0.4); }
 
 .btn-brass {
   padding: 13px 28px;
   background: var(--brick);
   color: #fff;
+  box-shadow: 0 4px 12px rgba(181, 101, 74, 0.25);
 }
-.btn-brass:hover { background: var(--burgundy); }
+.btn-brass:hover { background: var(--burgundy); box-shadow: 0 6px 16px rgba(181, 101, 74, 0.4); }
 
 .btn-plum {
   padding: 13px 28px;
   background: var(--burgundy);
   color: #fff;
+  box-shadow: 0 4px 12px rgba(143, 73, 56, 0.25);
 }
 .btn-plum:hover { background: #6e3529; }
 
@@ -136,14 +145,14 @@ button { font-family: inherit; }
 
 .btn-ghost {
   background: none; border: none; cursor: pointer;
-  font-family: 'DM Sans', sans-serif;
-  font-size: 12px; font-weight: 500; letter-spacing: 0.1em;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 12px; font-weight: 600; letter-spacing: 0.05em;
   text-transform: uppercase;
   text-decoration: underline; text-underline-offset: 4px;
   transition: opacity 0.25s;
   padding: 0;
 }
-.btn-ghost:hover { opacity: 0.55; }
+.btn-ghost:hover { opacity: 0.65; }
 
 /* Moving band */
 @keyframes ticker {
@@ -168,35 +177,36 @@ button { font-family: inherit; }
 .acc-body.open { max-height: 640px; }
 
 /* Progress */
-.prog-track { height: 2px; background: var(--border); overflow: hidden; }
+.prog-track { height: 3px; background: rgba(0,0,0,0.06); overflow: hidden; border-radius: 4px; }
 .prog-fill {
   height: 100%; background: linear-gradient(90deg, var(--teal), var(--brick));
   transform-origin: left; transform: scaleX(0);
   transition: transform 1.4s cubic-bezier(0.16,1,0.3,1);
+  border-radius: 4px;
 }
 .prog-fill.animated { transform: scaleX(1); }
 
 /* Form fields */
 .field {
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Plus Jakarta Sans', sans-serif;
   width: 100%; padding: 14px 16px;
   background: white; color: var(--ink);
-  border: 1px solid var(--border); outline: none;
-  font-size: 14.5px; transition: border-color 0.25s;
-  border-radius: 0;
+  border: 1px solid rgba(200,195,184,0.6); outline: none;
+  font-size: 14.5px; transition: border-color 0.25s, box-shadow 0.25s;
+  border-radius: 12px; /* Added rounded corners */
 }
-.field:focus { border-color: var(--brick); }
+.field:focus { border-color: var(--brick); box-shadow: 0 0 0 3px rgba(181, 101, 74, 0.1); }
 
 /* Gallery */
-.gal-item { overflow: hidden; position: relative; cursor: pointer; }
+.gal-item { overflow: hidden; position: relative; cursor: pointer; border-radius: 12px; }
 .gal-img  { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.6s cubic-bezier(0.16,1,0.3,1); }
 .gal-item:hover .gal-img { transform: scale(1.06); }
-.gal-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(32,35,34,0.5) 0%, transparent 55%); opacity: 0; transition: opacity 0.35s; pointer-events: none; }
+.gal-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(32,35,34,0.6) 0%, transparent 60%); opacity: 0; transition: opacity 0.35s; pointer-events: none; }
 .gal-item:hover .gal-overlay { opacity: 1; }
 
 /* Hover lift */
-.lift { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1); }
-.lift:hover { transform: translateY(-5px); }
+.lift { transition: transform 0.4s cubic-bezier(0.16,1,0.3,1), box-shadow 0.4s; }
+.lift:hover { transform: translateY(-5px); box-shadow: 0 12px 24px rgba(0,0,0,0.08); }
 
 ::selection { background: rgba(181,101,74,0.18); color: var(--ink); }
 
