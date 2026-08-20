@@ -1,6 +1,17 @@
-// Central API helper — uses VITE_API_URL in production,
-// or defaults to the production Render backend URL.
-const BASE = import.meta.env.VITE_API_URL || 'https://mispha-backend-api-2026.onrender.com'
+// Central API helper.
+// In production, prefer VITE_API_URL when provided.
+// If omitted, requests use same-origin `/api/*` so Vercel rewrites can proxy to Render.
+function normalizeBaseUrl(value?: string): string {
+  if (!value) return ''
+
+  let normalized = value.trim().replace(/\/+$/, '')
+  // Accept either https://host or https://host/api in env configuration.
+  normalized = normalized.replace(/\/api$/i, '')
+
+  return normalized
+}
+
+const BASE = normalizeBaseUrl(import.meta.env.VITE_API_URL)
 
 export async function apiFetch<T>(
   path: string,
@@ -8,7 +19,11 @@ export async function apiFetch<T>(
 ): Promise<T> {
   const { headers, ...rest } = opts
 
-  const res = await fetch(`${BASE}${path}`, {
+  const endpoint = path.startsWith('http://') || path.startsWith('https://')
+    ? path
+    : `${BASE}${path}`
+
+  const res = await fetch(endpoint, {
     ...rest,
     headers: {
       'Content-Type': 'application/json',
