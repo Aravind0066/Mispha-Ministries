@@ -3,15 +3,15 @@ import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { apiFetch } from './api'
 
 // Ministry images
-import img157    from './image_157_.png'
-import img159    from './image_159_.png'
-import img161    from './image_161_.png'
-import img162    from './image_162_.png'
-import img162b   from './image_162_.png'
-import img166    from './image_166_.png'
-import imgPalmSunday          from './assets/training-session.jpg'
-import imgYoungPastors        from './assets/hero-ministry.jpg'
-import imgJohnBenniPreaching  from './image_166_.png'
+import img157 from './image_157_.png'
+import img159 from './image_159_.png'
+import img161 from './image_161_.png'
+import img162 from './image_162_.png'
+import img162b from './image_162_.png'
+import img166 from './image_166_.png'
+import imgPalmSunday from './assets/training-session.jpg'
+import imgYoungPastors from './assets/hero-ministry.jpg'
+import imgJohnBenniPreaching from './image_166_.png'
 import imgHeroMinistry from './assets/hero-ministry.jpg'
 import imgTrainingSession from './assets/training-session.jpg'
 import imgSchool from './assets/school.jpg'
@@ -146,13 +146,13 @@ function Loader({ onDone }: { onDone: () => void }) {
 // ─── NAVBAR ───────────────────────────────────────────────────────────────────
 
 const NAV = [
-  { label: 'Our Ministry',     id: 'calling' },
-  { label: 'Training',         id: 'training' },
-  { label: 'Leadership',       id: 'leadership' },
-  { label: 'Annual Covenant',  id: 'covenant' },
-  { label: 'Gallery',          id: 'gallery' },
-  { label: 'Donations',        id: 'give' },
-  { label: 'Contact',          id: 'contact' },
+  { label: 'Our Ministry', id: 'calling' },
+  { label: 'Training', id: 'training' },
+  { label: 'Leadership', id: 'leadership' },
+  { label: 'Annual Covenant', id: 'covenant' },
+  { label: 'Gallery', id: 'gallery' },
+  { label: 'Donations', id: 'give' },
+  { label: 'Contact', id: 'contact' },
 ]
 
 function Navbar({ loaded }: { loaded: boolean }) {
@@ -185,7 +185,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
       <div style={{ width: '100%', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 20 }}>
         {/* Logo left */}
         <button onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12, shrink: 0 }}>
+          style={{ background: 'none', border: 'none', padding: 0, cursor: 'pointer', display: 'flex', alignItems: 'center', gap: 12 }}>
           <img src={img157} alt="Mispha logo" style={{ width: 44, height: 44, objectFit: 'contain', display: 'block' }} />
           <div style={{
             fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 18,
@@ -211,7 +211,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
         </div>
 
         {/* CTA & Phone right */}
-        <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: 24, shrink: 0 }}>
+        <div className="hide-mobile" style={{ display: 'flex', alignItems: 'center', gap: 24 }}>
           <a href="tel:+919884970978"
             style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 15, fontWeight: 600, color: 'var(--ink)', letterSpacing: '0.04em', textDecoration: 'none', whiteSpace: 'nowrap' }}>
             +91 98849 70978
@@ -279,18 +279,36 @@ function Navbar({ loaded }: { loaded: boolean }) {
 
 // ─── HERO ─────────────────────────────────────────────────────────────────────
 
-const CATCH = [
+const DEFAULT_CATCH = [
   'Prayer is the key for vision',
   'Vision is the key for heaven',
   'Heaven is the key for prayer',
 ]
 
 function Hero() {
+  const [settings, setSettings] = useState<any>({})
   const [catchIdx, setCatchIdx] = useState(0)
+
   useEffect(() => {
-    const t = setInterval(() => setCatchIdx(c => (c + 1) % CATCH.length), 3400)
-    return () => clearInterval(t)
+    apiFetch<any>('/api/content/settings').then(res => {
+      if (res && typeof res === 'object') setSettings(res)
+    }).catch(console.error)
   }, [])
+
+  const catchList: string[] = settings.prayer_statements
+    ? String(settings.prayer_statements).split('\n').filter(Boolean)
+    : DEFAULT_CATCH
+
+  useEffect(() => {
+    if (catchList.length === 0) return
+    const t = setInterval(() => setCatchIdx(c => (c + 1) % catchList.length), 3400)
+    return () => clearInterval(t)
+  }, [catchList.length])
+
+  const line1 = settings.hero_line1 || 'Building churches.'
+  const line2 = settings.hero_line2 || 'Equipping leaders.'
+  const subtitle = settings.hero_subtitle || 'Sending the Gospel forward.'
+  const desc = settings.hero_desc || 'Mispha Ministries plants churches, prepares pastors, sends missionaries and develops Christian leaders who strengthen families and communities.'
 
   return (
     <section id="home" style={{
@@ -314,7 +332,7 @@ function Hero() {
 
         {/* Main headline */}
         <div style={{ marginBottom: 28, paddingTop: 4 }}>
-          {['Building churches.', 'Equipping leaders.'].map((line, i) => (
+          {[line1, line2].map((line, i) => (
             <div key={i} style={{ overflow: 'hidden', paddingBottom: 6 }}>
               <motion.h1 initial={{ y: '110%' }} animate={{ y: 0 }}
                 transition={{ duration: 0.78, ease: E, delay: 0.65 + i * 0.1 }}
@@ -333,7 +351,7 @@ function Hero() {
                 fontFamily: "'Fraunces', serif", fontWeight: 400, fontStyle: 'italic',
                 fontSize: 'clamp(20px, 2.2vw, 30px)',
                 color: 'var(--brick)', lineHeight: 1.4, marginTop: 8,
-              }}>Sending the Gospel forward.</motion.p>
+              }}>{subtitle}</motion.p>
           </div>
         </div>
 
@@ -350,7 +368,7 @@ function Hero() {
             fontSize: 'clamp(16px,1.4vw,18px)', fontWeight: 400,
             color: 'var(--muted)', lineHeight: 1.9, maxWidth: 400, marginBottom: 38,
           }}>
-          Mispha Ministries plants churches, prepares pastors, sends missionaries and develops Christian leaders who strengthen families and communities.
+          {desc}
         </motion.p>
 
         {/* Rotating prayer statement */}
@@ -358,7 +376,7 @@ function Hero() {
           transition={{ duration: 0.7, delay: 1.3 }}
           style={{ marginBottom: 46 }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 14 }}>
-            {CATCH.map((_, i) => (
+            {catchList.map((_, i) => (
               <motion.button key={i} onClick={() => setCatchIdx(i)}
                 animate={{ width: i === catchIdx ? 24 : 6, opacity: i === catchIdx ? 1 : 0.3 }}
                 transition={{ duration: 0.3 }}
@@ -376,7 +394,7 @@ function Hero() {
                 fontFamily: "'DM Sans', sans-serif", fontStyle: 'italic',
                 fontSize: 'clamp(16px,1.5vw,19px)', fontWeight: 500,
                 color: 'var(--burgundy)', lineHeight: 1.55,
-              }}>{CATCH[catchIdx]}</p>
+              }}>{catchList[catchIdx]}</p>
             </motion.div>
           </AnimatePresence>
         </motion.div>
@@ -902,7 +920,7 @@ function LeadershipNetwork() {
                   {/* Chevron */}
                   <svg width="18" height="18" viewBox="0 0 18 18" fill="none"
                     style={{ flexShrink: 0, transition: 'transform 0.3s', transform: active ? 'rotate(180deg)' : 'none' }}>
-                    <path d="M4 6.5l5 5 5-5" stroke={active ? 'var(--brick)' : 'rgba(32,35,34,0.3)'} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round"/>
+                    <path d="M4 6.5l5 5 5-5" stroke={active ? 'var(--brick)' : 'rgba(32,35,34,0.3)'} strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
                 </button>
 
@@ -947,8 +965,8 @@ function LeadershipNetwork() {
                   <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: 'var(--muted)', margin: 0 }}>The ministry will be in touch shortly.</p>
                 </div>
               ) : (
-                <form onSubmit={async e => { 
-                  e.preventDefault(); 
+                <form onSubmit={async e => {
+                  e.preventDefault();
                   const fd = new FormData(e.currentTarget as HTMLFormElement);
                   await apiFetch('/api/forms/leadership', {
                     method: 'POST',
@@ -960,7 +978,7 @@ function LeadershipNetwork() {
                       notes: fd.get('notes'),
                     })
                   });
-                  setEnquirySent(true); 
+                  setEnquirySent(true);
                 }} style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
                   <div style={{ position: 'relative' }}>
                     <select value={activeTrack} onChange={e => setActiveTrack(e.target.value)} required aria-label="Leadership track"
@@ -1059,13 +1077,13 @@ function AnnualCovenant() {
 // ─── VISION PROJECTS ──────────────────────────────────────────────────────────
 
 const PROJECTS_DATA = [
-  { title: 'Church Building',  purpose: 'Establishing a permanent, purpose-built place of worship for the local congregation.', img: imgTrainingSession, alt: 'Mispha congregation gathered in worship', col: 7 },
-  { title: 'Bible College',    purpose: 'A dedicated facility for training the next generation of pastors, missionaries and ministry leaders.', img: imgBibleCollege, alt: 'Bible college campus building', col: 5 },
-  { title: 'School',           purpose: 'Providing quality Christian education that forms character, intellect and leadership.', img: imgSchool, alt: 'Children learning in a classroom', col: 4 },
-  { title: 'College',          purpose: 'Higher education grounded in Christian values, equipping graduates for service in every field.', img: imgCollege, alt: 'University building and campus', col: 4 },
-  { title: 'Dairy Farm',       purpose: 'A sustainable agricultural enterprise ensuring community food security and economic empowerment.', img: imgDairyFarm, alt: 'Cows grazing in a lush green pastoral field', col: 4 },
-  { title: 'Paddy Farm',       purpose: 'Cultivating land for long-term community livelihood and Kingdom-centred enterprise.', img: imgPaddyFarm, alt: 'Green rice paddy field with palm trees', col: 5 },
-  { title: 'Fruit Farm',       purpose: 'Building sustainable farming for community provision and ministry funding.', img: imgFruitFarm, alt: 'Fruit trees in an orchard at harvest', col: 7 },
+  { title: 'Church Building', purpose: 'Establishing a permanent, purpose-built place of worship for the local congregation.', img: imgTrainingSession, alt: 'Mispha congregation gathered in worship', col: 7 },
+  { title: 'Bible College', purpose: 'A dedicated facility for training the next generation of pastors, missionaries and ministry leaders.', img: imgBibleCollege, alt: 'Bible college campus building', col: 5 },
+  { title: 'School', purpose: 'Providing quality Christian education that forms character, intellect and leadership.', img: imgSchool, alt: 'Children learning in a classroom', col: 4 },
+  { title: 'College', purpose: 'Higher education grounded in Christian values, equipping graduates for service in every field.', img: imgCollege, alt: 'University building and campus', col: 4 },
+  { title: 'Dairy Farm', purpose: 'A sustainable agricultural enterprise ensuring community food security and economic empowerment.', img: imgDairyFarm, alt: 'Cows grazing in a lush green pastoral field', col: 4 },
+  { title: 'Paddy Farm', purpose: 'Cultivating land for long-term community livelihood and Kingdom-centred enterprise.', img: imgPaddyFarm, alt: 'Green rice paddy field with palm trees', col: 5 },
+  { title: 'Fruit Farm', purpose: 'Building sustainable farming for community provision and ministry funding.', img: imgFruitFarm, alt: 'Fruit trees in an orchard at harvest', col: 7 },
 ]
 
 type VProject = { title: string; purpose: string; img: string; alt: string; col: number }
@@ -1236,13 +1254,34 @@ function FromThePulpit() {
   )
 }
 
+const DEFAULT_BOARD_MEMBERS = [
+  {
+    id: 1,
+    name: 'Rev. D. John Benni',
+    role: 'President',
+    bio: 'Founding leader and President of Mispha Ministries, dedicated to church planting, pastoral training, and community leadership across regions.',
+    imageUrl: img162b,
+    side: 'left',
+  },
+  {
+    id: 2,
+    name: 'Pas. Rosyelavarasi T.',
+    role: 'Secretary & Treasurer',
+    bio: 'Secretary and Treasurer of Mispha Ministries, overseeing administrative stewardship, community outreach programs, and ministry growth.',
+    imageUrl: img159,
+    side: 'right',
+  },
+]
+
 function BoardMembers() {
-  const [members, setMembers] = useState<any[]>([])
+  const [members, setMembers] = useState<any[]>(DEFAULT_BOARD_MEMBERS)
 
   useEffect(() => {
     apiFetch<any[]>('/api/content/board-members').then(res => {
-      if (res.length > 0) setMembers(res)
-    }).catch(console.error)
+      if (res && res.length > 0) setMembers(res)
+    }).catch((err) => {
+      console.error(err)
+    })
   }, [])
 
   if (members.length === 0) return null
@@ -1258,7 +1297,7 @@ function BoardMembers() {
 
         {members.map((member, i) => {
           const isLeft = member.side === 'left' || (!member.side && i % 2 === 0)
-          
+
           if (isLeft) {
             return (
               <Reveal key={member.id} delay={0.1 * i}>
@@ -1521,21 +1560,21 @@ function GallerySection() {
 // ─── GIVE & PARTNER ───────────────────────────────────────────────────────────
 
 const GIVING_AREAS = [
-  { title: 'Church Planting',        desc: 'Support the establishment of new gospel-centred churches.' },
-  { title: 'Missionary Support',     desc: 'Help prepare and sustain missionaries in the harvest fields.' },
-  { title: 'Bible College',          desc: 'Invest in the formation of the next generation of pastors.' },
-  { title: 'Leadership Training',    desc: 'Equip women, men, youth and children for Kingdom service.' },
+  { title: 'Church Planting', desc: 'Support the establishment of new gospel-centred churches.' },
+  { title: 'Missionary Support', desc: 'Help prepare and sustain missionaries in the harvest fields.' },
+  { title: 'Bible College', desc: 'Invest in the formation of the next generation of pastors.' },
+  { title: 'Leadership Training', desc: 'Equip women, men, youth and children for Kingdom service.' },
   { title: 'School & College Vision', desc: 'Help build Christian education facilities for communities.' },
-  { title: 'Agricultural Projects',  desc: 'Fund dairy, paddy and fruit farming for community provision.' },
-  { title: 'Family & Counselling',   desc: 'Support pastoral care and family ministry programmes.' },
-  { title: 'Media Ministry',         desc: 'Extend the Gospel reach through audio, video and digital media.' },
+  { title: 'Agricultural Projects', desc: 'Fund dairy, paddy and fruit farming for community provision.' },
+  { title: 'Family & Counselling', desc: 'Support pastoral care and family ministry programmes.' },
+  { title: 'Media Ministry', desc: 'Extend the Gospel reach through audio, video and digital media.' },
 ]
 
 const DONATION_TIERS = [
-  { amount: '₹500',  label: 'Seed Gift',     impact: 'Covers one week of discipleship materials for a new believer.' },
+  { amount: '₹500', label: 'Seed Gift', impact: 'Covers one week of discipleship materials for a new believer.' },
   { amount: '₹1,500', label: 'Monthly Giver', impact: 'Sponsors one day of Bible College training per month.' },
   { amount: '₹5,000', label: 'Church Builder', impact: 'Contributes directly toward a local church planting effort.' },
-  { amount: 'Custom', label: 'Your Gift',     impact: 'Name your amount — every rupee is a stone in the Kingdom.' },
+  { amount: 'Custom', label: 'Your Gift', impact: 'Name your amount — every rupee is a stone in the Kingdom.' },
 ]
 
 function GivePartner() {
@@ -1545,12 +1584,12 @@ function GivePartner() {
   const [sent, setSent] = useState(false)
   const handleSubmit = (e: React.FormEvent) => { e.preventDefault(); setSent(true) }
 
-  const sage       = '#4D6B4F'
-  const sageDark   = '#2E4530'
-  const sageMid    = '#6B8F6D'
-  const sageBg     = '#EEF4EE'
+  const sage = '#4D6B4F'
+  const sageDark = '#2E4530'
+  const sageMid = '#6B8F6D'
+  const sageBg = '#EEF4EE'
   const sageBorder = 'rgba(77,107,79,0.2)'
-  const sageCard   = 'rgba(77,107,79,0.06)'
+  const sageCard = 'rgba(77,107,79,0.06)'
 
   return (
     <section id="give" style={{ background: sageBg, position: 'relative', overflow: 'hidden' }}>
@@ -1680,7 +1719,7 @@ function GivePartner() {
                       {isActive && (
                         <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0 }}>
                           <circle cx="7" cy="7" r="6" fill={sage} />
-                          <path d="M4 7.5l2 2 4-4" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round"/>
+                          <path d="M4 7.5l2 2 4-4" stroke="white" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
                         </svg>
                       )}
                     </button>
@@ -1695,7 +1734,7 @@ function GivePartner() {
                 <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 22 }}>
                   <div style={{ width: 36, height: 36, background: sageBg, border: `1px solid ${sageBorder}`, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                     <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
-                      <path d="M8 2C5.8 2 4 3.8 4 6c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" fill={sage} opacity=".85"/>
+                      <path d="M8 2C5.8 2 4 3.8 4 6c0 3 4 8 4 8s4-5 4-8c0-2.2-1.8-4-4-4z" fill={sage} opacity=".85" />
                     </svg>
                   </div>
                   <div>
@@ -1709,20 +1748,20 @@ function GivePartner() {
                     style={{ padding: '28px 24px', background: sageBg, border: `1px solid ${sageBorder}`, borderRadius: 12, textAlign: 'center' }}>
                     <div style={{ width: 44, height: 44, background: sage, borderRadius: '50%', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 14px' }}>
                       <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
-                        <path d="M4 10l5 5 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                        <path d="M4 10l5 5 7-7" stroke="white" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
                       </svg>
                     </div>
                     <div style={{ fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 20, color: sageDark, marginBottom: 8 }}>Gift received — thank you.</div>
                     <p style={{ fontFamily: "'DM Sans', sans-serif", fontSize: 15, color: sageMid, margin: 0, lineHeight: 1.7 }}>The Mispha team will be in touch shortly with giving details.</p>
                   </motion.div>
                 ) : (
-                  <form onSubmit={async e => { 
-                    e.preventDefault(); 
+                  <form onSubmit={async e => {
+                    e.preventDefault();
                     await apiFetch('/api/forms/donation', {
                       method: 'POST',
                       body: JSON.stringify({ ...form, area: activeArea, tier: activeTier })
                     });
-                    setSent(true); 
+                    setSent(true);
                   }} style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
                     <input className="field" placeholder="Your name" value={form.name}
                       onChange={e => setForm({ ...form, name: e.target.value })} required
@@ -1787,9 +1826,9 @@ function GivePartner() {
 
 type FormTab = 'prayer' | 'counselling' | 'contact'
 const FORM_TABS: { id: FormTab; label: string }[] = [
-  { id: 'prayer',     label: 'Prayer Request'    },
+  { id: 'prayer', label: 'Prayer Request' },
   { id: 'counselling', label: 'Counselling Request' },
-  { id: 'contact',    label: 'General Contact'   },
+  { id: 'contact', label: 'General Contact' },
 ]
 
 function Contact() {
@@ -1865,8 +1904,8 @@ function Contact() {
                   </p>
                 </motion.div>
               ) : (
-                <form onSubmit={async e => { 
-                  e.preventDefault(); 
+                <form onSubmit={async e => {
+                  e.preventDefault();
                   const fd = new FormData(e.currentTarget as HTMLFormElement);
                   if (tab === 'prayer') {
                     await apiFetch('/api/forms/prayer', { method: 'POST', body: JSON.stringify({ name: fd.get('name'), contact: fd.get('contact'), category: fd.get('category'), request: fd.get('request'), consent: !!fd.get('consent') }) });
@@ -1875,7 +1914,7 @@ function Contact() {
                   } else {
                     await apiFetch('/api/forms/contact', { method: 'POST', body: JSON.stringify({ name: fd.get('name'), phone: fd.get('phone'), email: fd.get('email'), reason: fd.get('reason'), message: fd.get('message') }) });
                   }
-                  setSent(tab); 
+                  setSent(tab);
                 }} style={{ display: 'flex', flexDirection: 'column', gap: 14 }}>
                   {tab === 'prayer' && (<>
                     <input name="name" className="field" placeholder="Name (optional)" />
