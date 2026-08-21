@@ -237,7 +237,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             transition={{ duration: 0.28, ease: E }}
             style={{
               position: 'fixed', inset: 0, zIndex: 9999,
-              background: 'rgba(244, 240, 232, 0.9)',
+              background: '#171918',
               backdropFilter: 'blur(32px) saturate(125%)',
               WebkitBackdropFilter: 'blur(32px) saturate(125%)',
               borderLeft: '1px solid rgba(255,255,255,0.65)',
@@ -248,27 +248,27 @@ function Navbar({ loaded }: { loaded: boolean }) {
             <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
               <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
                 <img src={img157} alt="Mispha logo" style={{ width: 36, height: 36, objectFit: 'contain' }} />
-                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 18, letterSpacing: '0.12em', color: 'var(--ink)', textTransform: 'uppercase' }}>Mispha Ministries</span>
+                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 18, letterSpacing: '0.12em', color: '#F4F0E8', textTransform: 'uppercase' }}>Mispha Ministries</span>
               </div>
               <button onClick={() => setMenuOpen(false)} aria-label="Close menu"
-                style={{ background: 'none', border: 'none', color: 'var(--ink)', fontSize: 32, cursor: 'pointer', lineHeight: 1, padding: 4 }}>×</button>
+                style={{ background: 'none', border: 'none', color: '#F4F0E8', fontSize: 32, cursor: 'pointer', lineHeight: 1, padding: 4 }}>×</button>
             </div>
             <div style={{ flex: 1, overflowY: 'auto' }}>
               {[...NAV, { label: 'Request Prayer', id: 'contact' }].map((n, i) => (
                 <button key={`${n.id}-${i}`} onClick={() => go(n.id)}
                   style={{
                     display: 'block', width: '100%', textAlign: 'left',
-                    background: 'none', border: 'none', borderBottom: '1px solid var(--border)',
+                    background: 'none', border: 'none', borderBottom: '1px solid rgba(244,240,232,0.2)',
                     cursor: 'pointer', padding: '18px 0',
                     fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 22,
-                    color: i === NAV.length ? 'var(--brick)' : 'var(--ink)',
+                    color: i === NAV.length ? '#D89A7F' : '#F4F0E8',
                   }}
                 >{n.label}</button>
               ))}
             </div>
-            <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
+            <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid rgba(244,240,232,0.2)' }}>
               <a href="tel:+919884970978"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 700, color: '#202322', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 700, color: '#F4F0E8', textDecoration: 'none', whiteSpace: 'nowrap' }}>
                 +91 98849 70978
               </a>
             </div>
