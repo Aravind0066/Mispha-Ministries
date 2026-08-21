@@ -279,6 +279,10 @@ p {
   -webkit-overflow-scrolling: touch;
 }
 
+.mobile-menu-panel {
+  isolation: isolate;
+}
+
 @media (max-width: 768px) {
   .admin-shell {
     display: block !important;

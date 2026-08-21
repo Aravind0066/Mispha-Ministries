@@ -233,13 +233,15 @@ function Navbar({ loaded }: { loaded: boolean }) {
       {/* Full-screen glassy mobile menu */}
       <AnimatePresence>
         {menuOpen && (
-          <motion.div initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
+          <motion.div className="mobile-menu-panel" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
             transition={{ duration: 0.28, ease: E }}
             style={{
               position: 'fixed', inset: 0, zIndex: 9999,
-              background: 'rgba(244, 240, 232, 0.985)',
-              backdropFilter: 'blur(24px)',
-              WebkitBackdropFilter: 'blur(24px)',
+              background: 'rgba(244, 240, 232, 0.9)',
+              backdropFilter: 'blur(32px) saturate(125%)',
+              WebkitBackdropFilter: 'blur(32px) saturate(125%)',
+              borderLeft: '1px solid rgba(255,255,255,0.65)',
+              boxShadow: '-12px 0 36px rgba(32,35,34,0.12)',
               display: 'flex', flexDirection: 'column', padding: '28px 32px 44px',
             }}
           >
