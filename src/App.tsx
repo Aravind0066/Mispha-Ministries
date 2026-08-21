@@ -157,6 +157,7 @@ const NAV = [
 
 function Navbar({ loaded }: { loaded: boolean }) {
   const [scrolled, setScrolled] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', h, { passive: true })
@@ -164,6 +165,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
   }, [])
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
+    setMenuOpen(false)
   }
 
   return (
@@ -219,7 +221,61 @@ function Navbar({ loaded }: { loaded: boolean }) {
           </button>
         </div>
 
+        <button className="hide-tablet" onClick={() => setMenuOpen(true)} aria-label="Open navigation menu"
+          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
+          {[0, 1, 2].map(i => (
+            <span key={i} style={{ display: 'block', width: 24, height: 2, background: 'var(--ink)', borderRadius: 1 }} />
+          ))}
+        </button>
+
       </div>
+
+      <AnimatePresence>
+        {menuOpen && (
+          <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}
+            transition={{ duration: 0.25, ease: E }}
+            style={{
+              position: 'fixed', inset: 0, zIndex: 9999,
+              background: '#171918', color: '#F4F0E8',
+              display: 'flex', flexDirection: 'column', padding: '28px 32px 44px',
+            }}
+          >
+            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28 }}>
+              <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 18, letterSpacing: '0.12em', color: '#F4F0E8', textTransform: 'uppercase' }}>
+                Mispha Ministries
+              </span>
+              <button onClick={() => setMenuOpen(false)} aria-label="Close navigation menu"
+                style={{ background: 'none', border: 'none', color: '#F4F0E8', fontSize: 32, cursor: 'pointer', lineHeight: 1, padding: 4 }}>
+                ×
+              </button>
+            </div>
+
+            <div style={{ flex: 1, overflowY: 'auto' }}>
+              {NAV.map(n => (
+                <button key={n.id} onClick={() => go(n.id)}
+                  style={{
+                    display: 'block', width: '100%', textAlign: 'left',
+                    background: 'none', border: 'none', borderBottom: '1px solid rgba(244,240,232,0.2)',
+                    cursor: 'pointer', padding: '17px 0',
+                    fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 22,
+                    color: '#F4F0E8',
+                  }}
+                >{n.label}</button>
+              ))}
+            </div>
+
+            <div style={{ marginTop: 20, paddingTop: 18, borderTop: '1px solid rgba(244,240,232,0.2)', display: 'flex', flexDirection: 'column', gap: 16 }}>
+              <a href="tel:+919884970978"
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 700, color: '#F4F0E8', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                +91 98849 70978
+              </a>
+              <button onClick={() => go('contact')} className="btn btn-brass btn-arrow" style={{ alignSelf: 'flex-start', padding: '11px 20px', fontSize: 13 }}>
+                Request Prayer <span className="btn-arr">→</span>
+              </button>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </motion.nav>
   )
 }
