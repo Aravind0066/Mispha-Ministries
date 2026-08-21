@@ -157,7 +157,6 @@ const NAV = [
 
 function Navbar({ loaded }: { loaded: boolean }) {
   const [scrolled, setScrolled] = useState(false)
-  const [menuOpen, setMenuOpen] = useState(false)
   useEffect(() => {
     const h = () => setScrolled(window.scrollY > 60)
     window.addEventListener('scroll', h, { passive: true })
@@ -165,7 +164,6 @@ function Navbar({ loaded }: { loaded: boolean }) {
   }, [])
   const go = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
-    setMenuOpen(false)
   }
 
   return (
@@ -221,60 +219,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
           </button>
         </div>
 
-        {/* Hamburger */}
-        <button className="hide-tablet" onClick={() => setMenuOpen(true)} aria-label="Open menu"
-          style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 8, display: 'flex', flexDirection: 'column', gap: 5 }}>
-          {[0, 1, 2].map(i => (
-            <span key={i} style={{ display: 'block', width: 24, height: 2, background: 'var(--ink)', borderRadius: 1 }} />
-          ))}
-        </button>
       </div>
-
-      {/* Full-screen glassy mobile menu */}
-      <AnimatePresence>
-        {menuOpen && (
-          <motion.div className="mobile-menu-panel" initial={{ opacity: 0, y: -10 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.28, ease: E }}
-            style={{
-              position: 'fixed', inset: 0, zIndex: 9999,
-              backgroundColor: '#171918',
-              backdropFilter: 'blur(32px) saturate(125%)',
-              WebkitBackdropFilter: 'blur(32px) saturate(125%)',
-              borderLeft: '1px solid rgba(255,255,255,0.65)',
-              boxShadow: '-12px 0 36px rgba(32,35,34,0.12)',
-              display: 'flex', flexDirection: 'column', padding: '28px 32px 44px',
-            }}
-          >
-            <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 40 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-                <img src={img157} alt="Mispha logo" style={{ width: 36, height: 36, objectFit: 'contain' }} />
-                <span style={{ fontFamily: "'Fraunces', serif", fontWeight: 800, fontSize: 18, letterSpacing: '0.12em', color: '#F4F0E8', textTransform: 'uppercase' }}>Mispha Ministries</span>
-              </div>
-              <button onClick={() => setMenuOpen(false)} aria-label="Close menu"
-                style={{ background: 'none', border: 'none', color: '#F4F0E8', fontSize: 32, cursor: 'pointer', lineHeight: 1, padding: 4 }}>×</button>
-            </div>
-            <div style={{ flex: 1, overflowY: 'auto' }}>
-              {[...NAV, { label: 'Request Prayer', id: 'contact' }].map((n, i) => (
-                <button key={`${n.id}-${i}`} onClick={() => go(n.id)}
-                  style={{
-                    display: 'block', width: '100%', textAlign: 'left',
-                    background: 'none', border: 'none', borderBottom: '1px solid rgba(244,240,232,0.2)',
-                    cursor: 'pointer', padding: '18px 0',
-                    fontFamily: "'Fraunces', serif", fontWeight: 700, fontSize: 22,
-                    color: i === NAV.length ? '#D89A7F' : '#F4F0E8',
-                  }}
-                >{n.label}</button>
-              ))}
-            </div>
-            <div style={{ margin: '24px -32px -44px', padding: '16px 32px 44px', background: '#171918', borderTop: '1px solid rgba(244,240,232,0.2)' }}>
-              <a href="tel:+919884970978"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 700, color: '#F4F0E8', textDecoration: 'none', whiteSpace: 'nowrap' }}>
-                +91 98849 70978
-              </a>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </motion.nav>
   )
 }

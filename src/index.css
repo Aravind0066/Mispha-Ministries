@@ -279,12 +279,6 @@ p {
   -webkit-overflow-scrolling: touch;
 }
 
-.mobile-menu-panel {
-  isolation: isolate;
-  background-color: #171918 !important;
-  opacity: 1;
-}
-
 @media (max-width: 768px) {
   .admin-shell {
     display: block !important;

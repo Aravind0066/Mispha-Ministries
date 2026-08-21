@@ -69,4 +69,4 @@ npm run dev
 ## Admin Panel
 Access the admin panel at `/admin` (e.g., `http://localhost:5173/admin`). Use the credentials set in `ADMIN_EMAIL` and `ADMIN_PASSWORD`.
 
-The admin layout is responsive on mobile. On smaller screens, the navigation becomes a horizontally scrollable bar, content spacing is reduced, and wide inbox tables can be scrolled horizontally. The public mobile menu uses a nearly opaque translucent panel so the menu and phone number remain readable over the page.
+The admin layout is responsive on mobile. On smaller screens, the navigation becomes a horizontally scrollable bar, content spacing is reduced, and wide inbox tables can be scrolled horizontally.
