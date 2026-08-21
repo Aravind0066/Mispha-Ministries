@@ -266,7 +266,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
                 >{n.label}</button>
               ))}
             </div>
-            <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid rgba(244,240,232,0.2)' }}>
+            <div style={{ margin: '24px -32px -44px', padding: '16px 32px 44px', background: '#171918', borderTop: '1px solid rgba(244,240,232,0.2)' }}>
               <a href="tel:+919884970978"
                 style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 700, color: '#F4F0E8', textDecoration: 'none', whiteSpace: 'nowrap' }}>
                 +91 98849 70978
