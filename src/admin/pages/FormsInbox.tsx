@@ -45,7 +45,7 @@ export default function FormsInbox() {
       </div>
 
       {loading ? <div>Loading...</div> : (
-        <div style={{ background: '#fff', border: '1px solid #E5E2DA' }}>
+        <div className="admin-table-wrap" style={{ background: '#fff', border: '1px solid #E5E2DA' }}>
           <table style={{ width: '100%', borderCollapse: 'collapse', textAlign: 'left', fontSize: 14 }}>
             <thead>
               <tr style={{ background: '#FAFAF8', borderBottom: '1px solid #E5E2DA', textTransform: 'uppercase', fontSize: 11, letterSpacing: '0.05em', color: '#6B6E6D' }}>

@@ -12,7 +12,7 @@ export default function AdminNav({ onLogout }: { onLogout: () => void }) {
   ]
 
   return (
-    <nav style={{ width: 240, background: '#171918', color: '#F4F0E8', position: 'fixed', top: 0, bottom: 0, left: 0, display: 'flex', flexDirection: 'column' }}>
+    <nav className="admin-nav" style={{ width: 240, background: '#171918', color: '#F4F0E8', position: 'fixed', top: 0, bottom: 0, left: 0, display: 'flex', flexDirection: 'column' }}>
       <div style={{ padding: '32px 24px', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
         <h2 style={{ fontFamily: "'Fraunces', serif", fontSize: 18, fontWeight: 700, letterSpacing: '0.05em', color: '#F4F0E8', margin: 0 }}>Mispha Admin</h2>
         <a href="/" target="_blank" rel="noreferrer" style={{ fontSize: 11, color: '#B5654A', textDecoration: 'none', marginTop: 6, display: 'inline-block' }}>View Live Site ↗</a>

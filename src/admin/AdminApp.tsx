@@ -24,9 +24,9 @@ export default function AdminApp() {
   }
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', background: '#F9F9F8', color: '#1A1A1A' }}>
+    <div className="admin-shell" style={{ display: 'flex', minHeight: '100vh', background: '#F9F9F8', color: '#1A1A1A' }}>
       <AdminNav onLogout={() => { setToken(null); navigate('/admin') }} />
-      <div style={{ flex: 1, marginLeft: 240, padding: '40px 60px' }}>
+      <div className="admin-content" style={{ flex: 1, marginLeft: 240, padding: '40px 60px' }}>
         <Routes>
           <Route path="/" element={<Dashboard />} />
           <Route path="/forms" element={<FormsInbox />} />
