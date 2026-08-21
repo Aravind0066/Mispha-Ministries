@@ -1,4 +1,5 @@
 import { useState, useEffect, useRef, useCallback, type ReactNode } from 'react'
+import { createPortal } from 'react-dom'
 import { motion, AnimatePresence, useInView } from 'framer-motion'
 import { apiFetch } from './api'
 
@@ -230,8 +231,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
 
       </div>
 
-      <AnimatePresence>
-        {menuOpen && (
+      {menuOpen && createPortal(
           <motion.div initial={{ opacity: 0, y: -12 }} animate={{ opacity: 1, y: 0 }} exit={{ opacity: 0, y: -12 }}
             transition={{ duration: 0.25, ease: E }}
             style={{
@@ -273,9 +273,9 @@ function Navbar({ loaded }: { loaded: boolean }) {
                 Request Prayer <span className="btn-arr">→</span>
               </button>
             </div>
-          </motion.div>
+          </motion.div>,
+          document.body,
         )}
-      </AnimatePresence>
     </motion.nav>
   )
 }
