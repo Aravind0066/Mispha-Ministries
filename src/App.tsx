@@ -237,7 +237,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             transition={{ duration: 0.28, ease: E }}
             style={{
               position: 'fixed', inset: 0, zIndex: 9999,
-              background: 'rgba(244, 240, 232, 0.95)',
+              background: 'rgba(244, 240, 232, 0.985)',
               backdropFilter: 'blur(24px)',
               WebkitBackdropFilter: 'blur(24px)',
               display: 'flex', flexDirection: 'column', padding: '28px 32px 44px',
@@ -266,7 +266,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             </div>
             <div style={{ marginTop: 24, paddingTop: 16, borderTop: '1px solid var(--border)' }}>
               <a href="tel:+919884970978"
-                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 600, color: 'var(--ink)', textDecoration: 'none', whiteSpace: 'nowrap' }}>
+                style={{ fontFamily: "'Plus Jakarta Sans', sans-serif", fontSize: 17, fontWeight: 700, color: '#202322', textDecoration: 'none', whiteSpace: 'nowrap' }}>
                 +91 98849 70978
               </a>
             </div>
