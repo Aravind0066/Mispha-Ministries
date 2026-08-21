@@ -237,7 +237,7 @@ function Navbar({ loaded }: { loaded: boolean }) {
             transition={{ duration: 0.28, ease: E }}
             style={{
               position: 'fixed', inset: 0, zIndex: 9999,
-              background: '#171918',
+              backgroundColor: '#171918',
               backdropFilter: 'blur(32px) saturate(125%)',
               WebkitBackdropFilter: 'blur(32px) saturate(125%)',
               borderLeft: '1px solid rgba(255,255,255,0.65)',

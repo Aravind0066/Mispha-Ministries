@@ -281,6 +281,8 @@ p {
 
 .mobile-menu-panel {
   isolation: isolate;
+  background-color: #171918 !important;
+  opacity: 1;
 }
 
 @media (max-width: 768px) {
